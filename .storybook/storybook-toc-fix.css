@@ -1,0 +1,28 @@
+/* ================================================================
+   EDS — TOC alignment fix  ·  v0.7.3
+
+   Loaded AFTER storybook-brand.css so these rules win on equal
+   specificity. Aligns the "ON THIS PAGE" title and the list items
+   to one continuous left edge, matching the user's request that
+   title and content sit on the same vertical line.
+   ================================================================ */
+
+.sbdocs .toc-wrapper {
+  padding-left: 0 !important;
+  margin-left: 0 !important;
+}
+
+/* Zero the <ul>'s default browser padding so list items align flush
+   with the title above them — one continuous left edge. */
+.sbdocs .toc-list,
+.sbdocs .toc-wrapper ul,
+.sbdocs .toc-wrapper ol {
+  padding-left: 0 !important;
+  margin-left: 0 !important;
+  list-style: none !important;
+}
+
+.sbdocs .toc-list-item {
+  padding-left: 0 !important;
+  margin-left: 0 !important;
+}
