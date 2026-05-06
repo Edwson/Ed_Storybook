@@ -1,64 +1,138 @@
-/* ================================================================
-   EDS — Storybook design tokens
-   Inherits from portfolio /css/tokens.css (single source of truth).
-   This file re-exports the same surface so Storybook isn't tightly
-   coupled to a relative path that might break on build-storybook.
+* ================================================================
+   EDS — Storybook design tokens (self-contained)
+   Inlined from portfolio /css/tokens.css for repo portability.
    ================================================================ */
 
-@import url('../../css/tokens.css');
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Inter:wght@200;300;400;500;600&display=swap');
 
-/* ── Storybook-specific layering ──
-   Two themes: 'institutional' (default, matches portfolio dark)
-              and 'salt' (matches Xanthos / Christie's / Double-Blind cream).
-   Density: 'comfortable' (default) and 'compact' (institutional dense).
-*/
+:root {
+     --bg-void: #060810;
+     --bg-deep: #0c0f1a;
+     --bg-surface: #131720;
+     --bg-elevated: rgba(255, 255, 255, 0.03);
+
+  --text-primary: #ffffff;
+     --text-secondary: rgba(255, 255, 255, 0.72);
+     --text-tertiary: rgba(255, 255, 255, 0.55);
+     --text-muted: rgba(255, 255, 255, 0.28);
+
+  --accent: #c9a959;
+     --accent-subtle: rgba(201, 169, 89, 0.12);
+     --accent-hover: rgba(201, 169, 89, 0.20);
+
+  --accent-03: rgba(201, 169, 89, 0.03);
+     --accent-04: rgba(201, 169, 89, 0.04);
+     --accent-05: rgba(201, 169, 89, 0.05);
+     --accent-06: rgba(201, 169, 89, 0.06);
+     --accent-07: rgba(201, 169, 89, 0.07);
+     --accent-08: rgba(201, 169, 89, 0.08);
+     --accent-10: rgba(201, 169, 89, 0.10);
+     --accent-14: rgba(201, 169, 89, 0.14);
+     --accent-15: rgba(201, 169, 89, 0.15);
+     --accent-18: rgba(201, 169, 89, 0.18);
+     --accent-22: rgba(201, 169, 89, 0.22);
+     --accent-25: rgba(201, 169, 89, 0.25);
+     --accent-28: rgba(201, 169, 89, 0.28);
+     --accent-30: rgba(201, 169, 89, 0.30);
+     --accent-35: rgba(201, 169, 89, 0.35);
+     --accent-38: rgba(201, 169, 89, 0.38);
+     --accent-40: rgba(201, 169, 89, 0.40);
+     --accent-50: rgba(201, 169, 89, 0.50);
+     --accent-55: rgba(201, 169, 89, 0.55);
+     --accent-70: rgba(201, 169, 89, 0.70);
+     --accent-80: rgba(201, 169, 89, 0.80);
+     --accent-90: rgba(201, 169, 89, 0.90);
+
+  --success: #52b277;
+     --danger: #e85d5d;
+     --color-positive: #16825d;
+     --color-positive-subtle: rgba(22, 130, 93, 0.12);
+     --color-negative: #c5303f;
+     --color-negative-subtle: rgba(197, 48, 63, 0.12);
+     --color-teal: #00d4aa;
+
+  --border: rgba(255, 255, 255, 0.06);
+     --border-hover: rgba(255, 255, 255, 0.12);
+
+  --font-display: 'Cormorant Garamond', Georgia, serif;
+     --font-body: 'Inter', -apple-system, 'Helvetica Neue', sans-serif;
+
+  --space-1: 4px;
+     --space-2: 8px;
+     --space-3: 12px;
+     --space-4: 16px;
+     --space-5: 24px;
+     --space-6: 32px;
+     --space-7: 40px;
+     --space-8: 48px;
+     --space-9: 64px;
+     --space-10: 80px;
+     --space-11: 96px;
+     --space-12: 128px;
+
+  --radius-s: 4px;
+     --radius-m: 8px;
+     --radius-l: 12px;
+
+  --shadow-sm: 0 1px 3px rgba(6,8,16,0.28), 0 1px 2px rgba(0,0,0,0.14);
+     --shadow-md: 0 4px 20px rgba(6,8,16,0.38), 0 2px 6px rgba(0,0,0,0.16);
+     --shadow-lg: 0 8px 40px rgba(6,8,16,0.45), 0 2px 8px rgba(201,169,89,0.06);
+     --shadow-xl: 0 16px 60px rgba(6,8,16,0.55), 0 4px 16px rgba(201,169,89,0.08);
+
+  --ease: cubic-bezier(0.25, 0.1, 0.25, 1);
+     --ease-out: cubic-bezier(0, 0, 0.25, 1);
+     --ease-in: cubic-bezier(0.4, 0, 1, 1);
+     --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+     --duration-fast: 150ms;
+     --duration-base: 300ms;
+     --duration-slow: 500ms;
+}
 
 [data-theme='institutional'] {
-  --eds-bg: var(--bg-void);
-  --eds-bg-card: var(--bg-surface);
-  --eds-bg-elevated: var(--bg-elevated);
-  --eds-text-1: var(--text-primary);
-  --eds-text-2: var(--text-secondary);
-  --eds-text-3: var(--text-tertiary);
-  --eds-text-4: var(--text-muted);
-  --eds-border: var(--border);
-  --eds-border-strong: var(--border-hover);
-  --eds-accent: var(--accent);
-  --eds-accent-fg: #060810;
+     --eds-bg: var(--bg-void);
+     --eds-bg-card: var(--bg-surface);
+     --eds-bg-elevated: var(--bg-elevated);
+     --eds-text-1: var(--text-primary);
+     --eds-text-2: var(--text-secondary);
+     --eds-text-3: var(--text-tertiary);
+     --eds-text-4: var(--text-muted);
+     --eds-border: var(--border);
+     --eds-border-strong: var(--border-hover);
+     --eds-accent: var(--accent);
+     --eds-accent-fg: #060810;
 }
 
 [data-theme='salt'] {
-  --eds-bg: #f5f0e6;
-  --eds-bg-card: #ffffff;
-  --eds-bg-elevated: rgba(255, 255, 255, 0.65);
-  --eds-text-1: #2a180c;
-  --eds-text-2: #42240c;
-  --eds-text-3: rgba(66, 36, 12, 0.62);
-  --eds-text-4: rgba(66, 36, 12, 0.38);
-  --eds-border: rgba(66, 36, 12, 0.12);
-  --eds-border-strong: rgba(66, 36, 12, 0.22);
-  --eds-accent: #c9a959;
-  --eds-accent-fg: #ffffff;
+     --eds-bg: #f5f0e6;
+     --eds-bg-card: #ffffff;
+     --eds-bg-elevated: rgba(255, 255, 255, 0.65);
+     --eds-text-1: #2a180c;
+     --eds-text-2: #42240c;
+     --eds-text-3: rgba(66, 36, 12, 0.62);
+     --eds-text-4: rgba(66, 36, 12, 0.38);
+     --eds-border: rgba(66, 36, 12, 0.12);
+     --eds-border-strong: rgba(66, 36, 12, 0.22);
+     --eds-accent: #c9a959;
+     --eds-accent-fg: #ffffff;
 }
 
 [data-density='comfortable'] {
-  --eds-pad-x: var(--space-4);
-  --eds-pad-y: var(--space-3);
-  --eds-row-h: 40px;
-  --eds-fs: 0.95rem;
+     --eds-pad-x: var(--space-4);
+     --eds-pad-y: var(--space-3);
+     --eds-row-h: 40px;
+     --eds-fs: 0.95rem;
 }
 
 [data-density='compact'] {
-  --eds-pad-x: var(--space-3);
-  --eds-pad-y: var(--space-2);
-  --eds-row-h: 28px;
-  --eds-fs: 0.85rem;
+     --eds-pad-x: var(--space-3);
+     --eds-pad-y: var(--space-2);
+     --eds-row-h: 28px;
+     --eds-fs: 0.85rem;
 }
 
-/* Default density if no host wrapper */
 :root {
-  --eds-pad-x: var(--space-4);
-  --eds-pad-y: var(--space-3);
-  --eds-row-h: 40px;
-  --eds-fs: 0.95rem;
+     --eds-pad-x: var(--space-4);
+     --eds-pad-y: var(--space-3);
+     --eds-row-h: 40px;
+     --eds-fs: 0.95rem;
 }
