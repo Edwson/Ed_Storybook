@@ -1,0 +1,122 @@
+/* ================================================================
+   Component · Checkbox
+   ================================================================ */
+
+.eds-checkbox {
+  display: inline-grid;
+  grid-template-columns: 18px 1fr;
+  align-items: start;
+  gap: var(--space-3, 12px);
+  font-family: 'Inter', sans-serif;
+  font-size: 0.9rem;
+  cursor: pointer;
+  user-select: none;
+  line-height: 1.4;
+}
+
+.eds-checkbox__input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+  width: 0;
+  height: 0;
+}
+
+.eds-checkbox__indicator {
+  position: relative;
+  width: 18px;
+  height: 18px;
+  margin-top: 2px;
+  border: 1px solid var(--border-hover);
+  border-radius: var(--radius-s, 4px);
+  background: var(--bg-surface);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--bg-void);
+  transition:
+    background var(--duration-fast, 120ms) var(--ease, ease),
+    border-color var(--duration-fast, 120ms) var(--ease, ease);
+  flex: none;
+}
+
+.eds-checkbox__check,
+.eds-checkbox__dash {
+  width: 14px;
+  height: 14px;
+  opacity: 0;
+  transition: opacity var(--duration-fast, 120ms) var(--ease, ease);
+}
+
+.eds-checkbox__input:checked ~ .eds-checkbox__indicator {
+  background: var(--accent);
+  border-color: var(--accent);
+}
+
+.eds-checkbox__input:checked ~ .eds-checkbox__indicator .eds-checkbox__check {
+  opacity: 1;
+}
+
+.eds-checkbox__input:indeterminate ~ .eds-checkbox__indicator {
+  background: var(--accent);
+  border-color: var(--accent);
+}
+
+.eds-checkbox__input:indeterminate ~ .eds-checkbox__indicator .eds-checkbox__dash {
+  opacity: 1;
+}
+
+.eds-checkbox__input:indeterminate ~ .eds-checkbox__indicator .eds-checkbox__check {
+  opacity: 0;
+}
+
+.eds-checkbox__input:focus-visible ~ .eds-checkbox__indicator {
+  box-shadow: 0 0 0 3px var(--accent-15);
+  border-color: var(--accent);
+}
+
+.eds-checkbox:hover .eds-checkbox__indicator {
+  border-color: var(--accent);
+}
+
+.eds-checkbox__body {
+  display: grid;
+  gap: 2px;
+}
+
+.eds-checkbox__label {
+  color: var(--text-primary);
+}
+
+.eds-checkbox__helper {
+  font-size: 0.78rem;
+  color: var(--text-tertiary);
+}
+
+.eds-checkbox--disabled {
+  cursor: not-allowed;
+  opacity: 0.55;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .eds-checkbox__indicator,
+  .eds-checkbox__check,
+  .eds-checkbox__dash {
+    transition: none !important;
+  }
+}
+
+/* ── Salt theme ──────────────────────────────────────────── */
+
+[data-theme='salt'] .eds-checkbox__indicator {
+  background: var(--eds-bg-card);
+  border-color: var(--eds-border-strong);
+}
+
+[data-theme='salt'] .eds-checkbox__input:checked ~ .eds-checkbox__indicator {
+  color: #ffffff;
+}
+
+[data-theme='salt'] .eds-checkbox__label {
+  color: var(--eds-text-1);
+}

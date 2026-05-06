@@ -1,0 +1,145 @@
+/* ================================================================
+   Component · Select
+   ================================================================ */
+
+.eds-select {
+  --select-h: 40px;
+  --select-fs: 0.9rem;
+  --select-px: var(--space-3, 12px);
+  --select-border: var(--border);
+
+  display: grid;
+  gap: 6px;
+  font-family: 'Inter', sans-serif;
+}
+
+.eds-select__label {
+  font-size: 0.78rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+}
+
+.eds-select__req {
+  color: var(--accent);
+  margin-left: 2px;
+}
+
+.eds-select__control {
+  position: relative;
+  display: flex;
+  align-items: stretch;
+  height: var(--select-h);
+  background: var(--bg-surface);
+  border: 1px solid var(--select-border);
+  border-radius: var(--radius-m, 8px);
+  transition:
+    border-color var(--duration-fast, 120ms) var(--ease, ease),
+    box-shadow var(--duration-fast, 120ms) var(--ease, ease);
+}
+
+.eds-select__control:focus-within {
+  --select-border: var(--accent);
+  box-shadow: 0 0 0 3px var(--accent-15);
+}
+
+.eds-select__native {
+  flex: 1;
+  min-width: 0;
+  appearance: none;
+  -webkit-appearance: none;
+  background: transparent;
+  border: none;
+  outline: none;
+  padding: 0 calc(var(--select-px) + 24px) 0 var(--select-px);
+  font-family: inherit;
+  font-size: var(--select-fs);
+  color: var(--text-primary);
+  cursor: pointer;
+}
+
+.eds-select__native:disabled {
+  cursor: not-allowed;
+}
+
+.eds-select__native option {
+  background: var(--bg-surface);
+  color: var(--text-primary);
+}
+
+.eds-select__chevron {
+  position: absolute;
+  right: var(--select-px);
+  top: 50%;
+  transform: translateY(-50%);
+  width: 16px;
+  height: 16px;
+  pointer-events: none;
+  color: var(--text-tertiary);
+}
+
+.eds-select__chevron svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.eds-select__helper {
+  font-size: 0.75rem;
+  color: var(--text-tertiary);
+  line-height: 1.4;
+}
+
+/* ── Sizes ───────────────────────────────────────────────── */
+
+.eds-select--sm {
+  --select-h: 28px;
+  --select-fs: 0.78rem;
+  --select-px: var(--space-2, 8px);
+}
+
+.eds-select--lg {
+  --select-h: 48px;
+  --select-fs: 1rem;
+  --select-px: var(--space-4, 16px);
+}
+
+/* ── Error ───────────────────────────────────────────────── */
+
+.eds-select--error .eds-select__control {
+  --select-border: rgba(232, 93, 93, 0.55);
+  box-shadow: 0 0 0 3px rgba(232, 93, 93, 0.15);
+}
+
+.eds-select--error .eds-select__helper {
+  color: #e85d5d;
+}
+
+/* ── Disabled ────────────────────────────────────────────── */
+
+.eds-select--disabled .eds-select__control {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .eds-select__control {
+    transition: none !important;
+  }
+}
+
+/* ── Salt theme ──────────────────────────────────────────── */
+
+[data-theme='salt'] .eds-select__control {
+  background: var(--eds-bg-card);
+  border-color: var(--eds-border);
+}
+
+[data-theme='salt'] .eds-select__native,
+[data-theme='salt'] .eds-select__native option {
+  color: var(--eds-text-1);
+  background: var(--eds-bg-card);
+}
+
+[data-theme='salt'] .eds-select__label {
+  color: var(--eds-text-2);
+}

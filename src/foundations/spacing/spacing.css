@@ -1,0 +1,71 @@
+/* Foundations · Spacing story styles */
+
+.eds-spacing-scale {
+  display: grid;
+  gap: 2px;
+  padding: var(--space-4, 16px);
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-m, 8px);
+}
+
+.eds-spacing-row {
+  display: grid;
+  grid-template-columns: 110px 1fr 60px;
+  align-items: center;
+  gap: var(--space-3, 12px);
+  padding: var(--space-2, 8px);
+  border-radius: var(--radius-s, 4px);
+}
+
+.eds-spacing-row:hover {
+  background: var(--accent-04);
+}
+
+.eds-spacing-row__var {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  color: var(--accent);
+}
+
+.eds-spacing-row__bar {
+  height: 14px;
+  background: var(--accent-30);
+  border-left: 1px solid var(--accent);
+  border-right: 1px solid var(--accent);
+}
+
+.eds-spacing-row__px {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  color: var(--text-tertiary);
+  text-align: right;
+}
+
+/* Radius grid */
+.eds-radius-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: var(--space-3, 12px);
+  padding: var(--space-5, 24px) 0;
+}
+
+.eds-radius-card {
+  display: grid;
+  gap: var(--space-2, 8px);
+  padding: var(--space-5, 24px);
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  font-family: 'Inter', sans-serif;
+}
+
+.eds-radius-card code {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  color: var(--accent);
+}
+
+.eds-radius-card span {
+  font-size: 12px;
+  color: var(--text-tertiary);
+}

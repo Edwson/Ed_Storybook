@@ -1,0 +1,161 @@
+/* Foundations · Typography story styles */
+
+.eds-type-page {
+  display: grid;
+  gap: var(--space-7, 40px);
+  padding: var(--space-5, 24px) 0;
+  color: var(--text-secondary);
+}
+
+.eds-type-section {
+  display: grid;
+  gap: var(--space-3, 12px);
+  padding: var(--space-5, 24px);
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-l, 12px);
+}
+
+.eds-type-section__label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-tertiary);
+  margin-bottom: var(--space-2, 8px);
+}
+
+.eds-type-display-1 {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-weight: 300;
+  font-size: clamp(2rem, 4vw + 1rem, 3.5rem);
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+  color: var(--text-primary);
+  margin: 0;
+}
+
+.eds-type-display-2 {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-weight: 400;
+  font-size: clamp(1.5rem, 2.5vw + 0.75rem, 2.25rem);
+  letter-spacing: -0.01em;
+  line-height: 1.2;
+  color: var(--text-primary);
+  margin: 0;
+}
+
+.eds-type-body-lg {
+  font-family: 'Inter', sans-serif;
+  font-size: 1.125rem;
+  line-height: 1.6;
+  color: var(--text-primary);
+  margin: 0;
+}
+
+.eds-type-body {
+  font-family: 'Inter', sans-serif;
+  font-size: 1rem;
+  line-height: 1.65;
+  color: var(--text-secondary);
+  margin: 0;
+}
+
+.eds-type-body-sm {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.85rem;
+  line-height: 1.5;
+  color: var(--text-tertiary);
+  margin: 0;
+}
+
+.eds-type-mono-row {
+  display: flex;
+  align-items: center;
+}
+
+.eds-type-mono-md {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 1rem;
+  font-variant-numeric: tabular-nums;
+  color: var(--text-primary);
+}
+
+.eds-type-mono-sm {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+}
+
+.eds-type-mono-xs {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  color: var(--accent);
+}
+
+.eds-pos {
+  color: var(--color-positive);
+}
+
+.eds-type-numerals {
+  font-family: 'JetBrains Mono', monospace;
+  font-variant-numeric: tabular-nums;
+  font-size: 1rem;
+  color: var(--text-primary);
+  margin: 0;
+  padding: 0;
+}
+
+/* Practical combinations */
+.eds-type-combos {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+  gap: var(--space-4, 16px);
+  padding: var(--space-5, 24px) 0;
+}
+
+.eds-type-card {
+  padding: var(--space-5, 24px);
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-l, 12px);
+  display: grid;
+  gap: var(--space-3, 12px);
+}
+
+.eds-type-card__eyebrow {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.eds-type-card__title {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-weight: 400;
+  font-size: 1.5rem;
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+  color: var(--text-primary);
+  margin: 0;
+}
+
+.eds-type-card__body {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: var(--text-secondary);
+  margin: 0;
+}
+
+.eds-type-card__meta {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-tertiary);
+  border-top: 1px solid var(--border);
+  padding-top: var(--space-3, 12px);
+}

@@ -1,0 +1,74 @@
+/* ================================================================
+   EDS — Storybook preview chrome
+   Styles applied INSIDE the story canvas (not the manager UI).
+   Manager UI styling lives in manager.js via storybook/theming.
+   ================================================================ */
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+body[data-theme='institutional'] {
+  background: var(--eds-bg);
+  color: var(--eds-text-1);
+}
+
+body[data-theme='salt'] {
+  background: var(--eds-bg);
+  color: var(--eds-text-1);
+}
+
+.eds-preview-host {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  color: var(--eds-text-1);
+}
+
+/* Story-doc page tweaks ─ make the autodocs scaffolding feel branded */
+.sbdocs-wrapper {
+  font-family: 'Inter', sans-serif;
+}
+
+.sbdocs h1,
+.sbdocs h2,
+.sbdocs h3 {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-weight: 400;
+  letter-spacing: -0.01em;
+}
+
+.sbdocs code,
+.sbdocs pre {
+  font-family: 'JetBrains Mono', Menlo, Monaco, Consolas, monospace;
+}
+
+/* Common helper utilities used across stories */
+.eds-stack {
+  display: grid;
+  gap: var(--space-4, 16px);
+}
+
+.eds-row {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3, 12px);
+  flex-wrap: wrap;
+}
+
+.eds-meta {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--eds-text-3);
+}
+
+.eds-doc-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: var(--space-4, 16px);
+}

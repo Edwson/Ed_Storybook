@@ -1,0 +1,64 @@
+/* ================================================================
+   EDS — Storybook design tokens
+   Inherits from portfolio /css/tokens.css (single source of truth).
+   This file re-exports the same surface so Storybook isn't tightly
+   coupled to a relative path that might break on build-storybook.
+   ================================================================ */
+
+@import url('../../css/tokens.css');
+
+/* ── Storybook-specific layering ──
+   Two themes: 'institutional' (default, matches portfolio dark)
+              and 'salt' (matches Xanthos / Christie's / Double-Blind cream).
+   Density: 'comfortable' (default) and 'compact' (institutional dense).
+*/
+
+[data-theme='institutional'] {
+  --eds-bg: var(--bg-void);
+  --eds-bg-card: var(--bg-surface);
+  --eds-bg-elevated: var(--bg-elevated);
+  --eds-text-1: var(--text-primary);
+  --eds-text-2: var(--text-secondary);
+  --eds-text-3: var(--text-tertiary);
+  --eds-text-4: var(--text-muted);
+  --eds-border: var(--border);
+  --eds-border-strong: var(--border-hover);
+  --eds-accent: var(--accent);
+  --eds-accent-fg: #060810;
+}
+
+[data-theme='salt'] {
+  --eds-bg: #f5f0e6;
+  --eds-bg-card: #ffffff;
+  --eds-bg-elevated: rgba(255, 255, 255, 0.65);
+  --eds-text-1: #2a180c;
+  --eds-text-2: #42240c;
+  --eds-text-3: rgba(66, 36, 12, 0.62);
+  --eds-text-4: rgba(66, 36, 12, 0.38);
+  --eds-border: rgba(66, 36, 12, 0.12);
+  --eds-border-strong: rgba(66, 36, 12, 0.22);
+  --eds-accent: #c9a959;
+  --eds-accent-fg: #ffffff;
+}
+
+[data-density='comfortable'] {
+  --eds-pad-x: var(--space-4);
+  --eds-pad-y: var(--space-3);
+  --eds-row-h: 40px;
+  --eds-fs: 0.95rem;
+}
+
+[data-density='compact'] {
+  --eds-pad-x: var(--space-3);
+  --eds-pad-y: var(--space-2);
+  --eds-row-h: 28px;
+  --eds-fs: 0.85rem;
+}
+
+/* Default density if no host wrapper */
+:root {
+  --eds-pad-x: var(--space-4);
+  --eds-pad-y: var(--space-3);
+  --eds-row-h: 40px;
+  --eds-fs: 0.95rem;
+}

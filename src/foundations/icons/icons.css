@@ -1,0 +1,105 @@
+/* Foundations · Icons story styles */
+
+.eds-icon-gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: var(--space-2, 8px);
+  padding: var(--space-5, 24px);
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-l, 12px);
+}
+
+.eds-icon-cell {
+  display: grid;
+  gap: 6px;
+  padding: var(--space-3, 12px);
+  background: var(--bg-elevated);
+  border-radius: var(--radius-s, 4px);
+  align-items: center;
+  justify-items: center;
+  text-align: center;
+  color: var(--text-secondary);
+  transition: background var(--duration-fast, 120ms) var(--ease, ease),
+              color var(--duration-fast, 120ms) var(--ease, ease);
+}
+
+.eds-icon-cell:hover {
+  background: var(--accent-08);
+  color: var(--accent);
+}
+
+.eds-icon-cell__icon {
+  width: 24px;
+  height: 24px;
+}
+
+.eds-icon-cell__name,
+.eds-icon-cell code {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10.5px;
+  color: var(--text-tertiary);
+  word-break: break-all;
+}
+
+/* Sizes */
+.eds-icon-sizes {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: var(--space-3, 12px);
+  padding: var(--space-5, 24px);
+}
+
+/* Color inheritance */
+.eds-icon-color-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: var(--space-3, 12px);
+  padding: var(--space-5, 24px);
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-l, 12px);
+}
+
+.eds-icon-color {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2, 8px);
+  font-family: 'Inter', sans-serif;
+  font-size: 0.9rem;
+}
+
+.eds-icon-color svg { width: 18px; height: 18px; }
+
+.eds-icon-color--primary { color: var(--text-primary); }
+.eds-icon-color--accent  { color: var(--accent); }
+.eds-icon-color--success { color: #52b277; }
+.eds-icon-color--danger  { color: #e85d5d; }
+.eds-icon-color--muted   { color: var(--text-muted); }
+
+/* In context */
+.eds-icon-context {
+  display: grid;
+  gap: var(--space-3, 12px);
+  padding: var(--space-5, 24px);
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-l, 12px);
+  font-family: 'Inter', sans-serif;
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+.eds-icon-context__row {
+  display: grid;
+  grid-template-columns: 18px 1fr;
+  gap: var(--space-3, 12px);
+  align-items: start;
+  color: var(--text-tertiary);
+}
+
+.eds-icon-context__row strong {
+  color: var(--text-primary);
+  font-weight: 500;
+}

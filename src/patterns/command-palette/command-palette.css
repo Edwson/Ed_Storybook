@@ -1,0 +1,189 @@
+/* ================================================================
+   Pattern · Command Palette
+   ================================================================ */
+
+.eds-cmdp {
+  position: relative;
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+  font-family: 'Inter', sans-serif;
+}
+
+.eds-cmdp__panel {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-hover);
+  border-radius: var(--radius-l, 12px);
+  overflow: hidden;
+  box-shadow:
+    0 24px 60px rgba(0, 0, 0, 0.55),
+    0 0 0 1px var(--accent-15);
+}
+
+/* ── Search row ─────────────────────────────────────────── */
+
+.eds-cmdp__search {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3, 12px);
+  padding: var(--space-3, 12px) var(--space-4, 16px);
+  border-bottom: 1px solid var(--border);
+  background: var(--bg-elevated);
+}
+
+.eds-cmdp__icon {
+  width: 16px;
+  height: 16px;
+  color: var(--text-tertiary);
+  flex: none;
+}
+
+.eds-cmdp__icon svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.eds-cmdp__input {
+  flex: 1;
+  min-width: 0;
+  background: transparent;
+  border: none;
+  outline: none;
+  color: var(--text-primary);
+  font-family: inherit;
+  font-size: 0.95rem;
+  padding: 4px 0;
+}
+
+.eds-cmdp__input::placeholder {
+  color: var(--text-muted);
+}
+
+/* ── List ───────────────────────────────────────────────── */
+
+.eds-cmdp__list {
+  list-style: none;
+  margin: 0;
+  padding: var(--space-2, 8px);
+  max-height: 380px;
+  overflow-y: auto;
+  display: grid;
+  gap: 1px;
+}
+
+.eds-cmdp__group-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10.5px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-tertiary);
+  padding: var(--space-3, 12px) var(--space-3, 12px) 6px;
+}
+
+.eds-cmdp__item {
+  display: grid;
+  grid-template-columns: auto 1fr auto auto;
+  align-items: center;
+  gap: var(--space-3, 12px);
+  padding: var(--space-3, 12px);
+  border-radius: var(--radius-s, 4px);
+  cursor: pointer;
+  font-size: 0.9rem;
+  color: var(--text-primary);
+}
+
+.eds-cmdp__item--active {
+  background: var(--accent-15);
+  color: var(--text-primary);
+  outline: 1px solid var(--accent-30);
+}
+
+.eds-cmdp__eyebrow {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--accent);
+  background: var(--accent-08);
+  padding: 2px 6px;
+  border-radius: var(--radius-s, 4px);
+}
+
+.eds-cmdp__label {
+  text-align: left;
+}
+
+.eds-cmdp__item-hint {
+  font-size: 0.78rem;
+  color: var(--text-tertiary);
+}
+
+.eds-cmdp__empty {
+  padding: var(--space-6, 32px) var(--space-4, 16px);
+  text-align: center;
+  font-size: 0.85rem;
+  color: var(--text-tertiary);
+}
+
+/* ── Hint footer ────────────────────────────────────────── */
+
+.eds-cmdp__hint {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4, 16px);
+  padding: var(--space-3, 12px) var(--space-4, 16px);
+  border-top: 1px solid var(--border);
+  background: var(--bg-elevated);
+  font-size: 11px;
+  color: var(--text-tertiary);
+}
+
+.eds-cmdp__hint span {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* ── Keyboard pill ──────────────────────────────────────── */
+
+.eds-cmdp__kbd,
+kbd {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 18px;
+  padding: 1px 6px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10.5px;
+  font-weight: 500;
+  line-height: 1.4;
+  color: var(--text-secondary);
+  background: var(--bg-surface);
+  border: 1px solid var(--border-hover);
+  border-radius: var(--radius-s, 4px);
+  box-shadow: inset 0 -1px 0 rgba(0, 0, 0, 0.45);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .eds-cmdp__item {
+    transition: none !important;
+  }
+}
+
+/* Salt theme (compact override) */
+[data-theme='salt'] .eds-cmdp__panel {
+  background: #ffffff;
+  border-color: rgba(66, 36, 12, 0.18);
+  box-shadow:
+    0 24px 60px rgba(66, 36, 12, 0.12),
+    0 0 0 1px var(--accent-15);
+}
+
+[data-theme='salt'] .eds-cmdp__input {
+  color: var(--eds-text-1);
+}
+
+[data-theme='salt'] .eds-cmdp__item {
+  color: var(--eds-text-1);
+}

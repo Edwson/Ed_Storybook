@@ -1,0 +1,177 @@
+/* ================================================================
+   Component · Disclosure Banner
+   ================================================================ */
+
+.eds-disclosure {
+  --disclosure-bg: var(--bg-surface);
+  --disclosure-border: var(--border);
+  --disclosure-icon-bg: var(--bg-elevated);
+  --disclosure-icon-color: var(--text-secondary);
+  --disclosure-title: var(--text-primary);
+
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: start;
+  gap: var(--space-3, 12px);
+  padding: var(--space-4, 16px);
+  background: var(--disclosure-bg);
+  border: 1px solid var(--disclosure-border);
+  border-left-width: 0;
+  border-radius: var(--radius-m, 8px);
+  position: relative;
+  font-family: 'Inter', sans-serif;
+}
+
+.eds-disclosure::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: -1px;
+  bottom: -1px;
+  width: 3px;
+  background: var(--disclosure-bar, var(--accent));
+  border-radius: var(--radius-m, 8px) 0 0 var(--radius-m, 8px);
+}
+
+.eds-disclosure__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: var(--disclosure-icon-bg);
+  color: var(--disclosure-icon-color);
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: 600;
+  font-size: 14px;
+  flex: none;
+}
+
+.eds-disclosure__body {
+  display: grid;
+  gap: 4px;
+  min-width: 0;
+}
+
+.eds-disclosure__juris {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-tertiary);
+}
+
+.eds-disclosure__title {
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--disclosure-title);
+  line-height: 1.35;
+}
+
+.eds-disclosure__text {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  line-height: 1.55;
+  margin: 0;
+}
+
+.eds-disclosure__cite {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  color: var(--text-tertiary);
+  background: var(--bg-elevated);
+  padding: 2px 6px;
+  border-radius: var(--radius-s, 4px);
+  width: fit-content;
+  margin-top: 4px;
+}
+
+.eds-disclosure__action {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.78rem;
+  font-weight: 500;
+  color: var(--text-primary);
+  background: var(--accent-08);
+  border: 1px solid var(--accent-30);
+  border-radius: var(--radius-m, 8px);
+  padding: var(--space-2, 8px) var(--space-3, 12px);
+  cursor: pointer;
+  white-space: nowrap;
+  transition:
+    background var(--duration-fast, 120ms) var(--ease, ease),
+    border-color var(--duration-fast, 120ms) var(--ease, ease);
+}
+
+.eds-disclosure__action:hover {
+  background: var(--accent-15);
+  border-color: var(--accent);
+}
+
+.eds-disclosure__dismiss {
+  background: transparent;
+  border: none;
+  color: var(--text-tertiary);
+  width: 28px;
+  height: 28px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-s, 4px);
+  cursor: pointer;
+  flex: none;
+}
+
+.eds-disclosure__dismiss svg {
+  width: 14px;
+  height: 14px;
+}
+
+.eds-disclosure__dismiss:hover {
+  background: var(--bg-elevated);
+  color: var(--text-primary);
+}
+
+/* ── Severity variants ────────────────────────────────────
+   Compliant — green. Disclosure — gold. Blocked — red. */
+
+.eds-disclosure--compliant {
+  --disclosure-bar: #52b277;
+  --disclosure-icon-bg: rgba(82, 178, 119, 0.15);
+  --disclosure-icon-color: #52b277;
+}
+
+.eds-disclosure--disclosure {
+  --disclosure-bar: var(--accent);
+  --disclosure-icon-bg: var(--accent-15);
+  --disclosure-icon-color: var(--accent);
+}
+
+.eds-disclosure--blocked {
+  --disclosure-bar: #e85d5d;
+  --disclosure-icon-bg: rgba(232, 93, 93, 0.15);
+  --disclosure-icon-color: #e85d5d;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .eds-disclosure__action {
+    transition: none !important;
+  }
+}
+
+/* ── Salt theme ──────────────────────────────────────────── */
+
+[data-theme='salt'] .eds-disclosure {
+  --disclosure-bg: var(--eds-bg-card);
+  --disclosure-border: var(--eds-border);
+  --disclosure-title: var(--eds-text-1);
+}
+
+[data-theme='salt'] .eds-disclosure__text {
+  color: var(--eds-text-2);
+}
+
+[data-theme='salt'] .eds-disclosure__cite {
+  background: rgba(66, 36, 12, 0.06);
+  color: var(--eds-text-2);
+}

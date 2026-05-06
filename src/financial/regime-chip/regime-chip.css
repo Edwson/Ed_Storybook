@@ -1,0 +1,123 @@
+/* ================================================================
+   Component · Regime Chip
+   ================================================================ */
+
+.eds-regime {
+  --regime-color: var(--text-secondary);
+  --regime-bg: var(--bg-elevated);
+  --regime-border: var(--border-hover);
+
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--regime-color);
+  background: var(--regime-bg);
+  border: 1px solid var(--regime-border);
+  border-radius: 999px;
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+
+.eds-regime__dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: currentColor;
+  flex: none;
+}
+
+.eds-regime__glyph {
+  font-size: 0.85em;
+  line-height: 1;
+}
+
+.eds-regime__label {
+  letter-spacing: 0.08em;
+}
+
+.eds-regime__conf {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding-left: 6px;
+  margin-left: 2px;
+  border-left: 1px solid currentColor;
+  opacity: 0.85;
+}
+
+.eds-regime__conf-bar {
+  position: relative;
+  width: 28px;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.eds-regime__conf-bar::after {
+  content: '';
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: var(--eds-conf, 50%);
+  background: currentColor;
+  border-radius: 2px;
+}
+
+.eds-regime__conf-pct {
+  font-size: 10px;
+  letter-spacing: 0.04em;
+}
+
+/* ── Sizes ───────────────────────────────────────────────── */
+
+.eds-regime--sm {
+  font-size: 10px;
+  padding: 2px 8px;
+}
+
+.eds-regime--sm .eds-regime__conf-bar { width: 22px; }
+
+.eds-regime--lg {
+  font-size: 12px;
+  padding: 6px 12px;
+}
+
+.eds-regime--lg .eds-regime__conf-bar { width: 40px; }
+
+/* ── Regime variants ─────────────────────────────────────── */
+
+.eds-regime--crash {
+  --regime-color: #e85d5d;
+  --regime-bg: rgba(232, 93, 93, 0.10);
+  --regime-border: rgba(232, 93, 93, 0.30);
+}
+
+.eds-regime--bear {
+  --regime-color: #e8945d;
+  --regime-bg: rgba(232, 148, 93, 0.10);
+  --regime-border: rgba(232, 148, 93, 0.30);
+}
+
+.eds-regime--neutral {
+  --regime-color: var(--accent);
+  --regime-bg: var(--accent-08);
+  --regime-border: var(--accent-25);
+}
+
+.eds-regime--bull {
+  --regime-color: #52b277;
+  --regime-bg: rgba(82, 178, 119, 0.10);
+  --regime-border: rgba(82, 178, 119, 0.30);
+}
+
+.eds-regime--euphoria {
+  --regime-color: #00d4aa;
+  --regime-bg: rgba(0, 212, 170, 0.10);
+  --regime-border: rgba(0, 212, 170, 0.30);
+}

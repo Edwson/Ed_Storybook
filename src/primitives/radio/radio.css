@@ -1,0 +1,149 @@
+/* ================================================================
+   Component · Radio Group
+   ================================================================ */
+
+.eds-radio-group {
+  border: none;
+  padding: 0;
+  margin: 0;
+  font-family: 'Inter', sans-serif;
+  display: grid;
+  gap: var(--space-3, 12px);
+}
+
+.eds-radio-group__legend {
+  font-size: 0.78rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+  padding: 0;
+  margin-bottom: var(--space-2, 8px);
+}
+
+.eds-radio-group__list {
+  display: grid;
+  gap: var(--space-3, 12px);
+}
+
+.eds-radio-group--horizontal .eds-radio-group__list {
+  grid-auto-flow: column;
+  grid-auto-columns: max-content;
+  gap: var(--space-5, 24px);
+}
+
+/* ── Single radio row ────────────────────────────────────── */
+
+.eds-radio {
+  display: inline-grid;
+  grid-template-columns: 18px 1fr;
+  align-items: start;
+  gap: var(--space-3, 12px);
+  font-size: 0.9rem;
+  cursor: pointer;
+  user-select: none;
+  line-height: 1.4;
+}
+
+.eds-radio__input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+  width: 0;
+  height: 0;
+}
+
+.eds-radio__indicator {
+  position: relative;
+  width: 18px;
+  height: 18px;
+  margin-top: 2px;
+  border: 1px solid var(--border-hover);
+  border-radius: 50%;
+  background: var(--bg-surface);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+  transition:
+    border-color var(--duration-fast, 120ms) var(--ease, ease),
+    background var(--duration-fast, 120ms) var(--ease, ease);
+}
+
+.eds-radio__dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--accent);
+  opacity: 0;
+  transform: scale(0.6);
+  transition:
+    opacity var(--duration-fast, 120ms) var(--ease, ease),
+    transform var(--duration-fast, 120ms) var(--ease, ease);
+}
+
+.eds-radio__input:checked ~ .eds-radio__indicator {
+  border-color: var(--accent);
+}
+
+.eds-radio__input:checked ~ .eds-radio__indicator .eds-radio__dot {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.eds-radio__input:focus-visible ~ .eds-radio__indicator {
+  box-shadow: 0 0 0 3px var(--accent-15);
+  border-color: var(--accent);
+}
+
+.eds-radio:hover .eds-radio__indicator {
+  border-color: var(--accent);
+}
+
+.eds-radio__body {
+  display: grid;
+  gap: 2px;
+}
+
+.eds-radio__label {
+  color: var(--text-primary);
+}
+
+.eds-radio__helper {
+  font-size: 0.78rem;
+  color: var(--text-tertiary);
+}
+
+.eds-radio--disabled {
+  cursor: not-allowed;
+  opacity: 0.55;
+}
+
+/* ── Group helper / error ────────────────────────────────── */
+
+.eds-radio-group__helper {
+  font-size: 0.75rem;
+  color: var(--text-tertiary);
+  line-height: 1.4;
+}
+
+.eds-radio-group--error .eds-radio-group__helper {
+  color: #e85d5d;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .eds-radio__indicator,
+  .eds-radio__dot {
+    transition: none !important;
+  }
+}
+
+/* ── Salt theme ──────────────────────────────────────────── */
+
+[data-theme='salt'] .eds-radio__indicator {
+  background: var(--eds-bg-card);
+  border-color: var(--eds-border-strong);
+}
+
+[data-theme='salt'] .eds-radio__label,
+[data-theme='salt'] .eds-radio-group__legend {
+  color: var(--eds-text-1);
+}

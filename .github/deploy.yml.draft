@@ -1,0 +1,64 @@
+name: Build & Deploy Storybook
+
+# Builds the Storybook static site on every push to `main`, then publishes
+# it to GitHub Pages. The site URL ends up at:
+#   https://edwson.github.io/Ed_Storybook/
+#
+# Setup checklist (one-time, do this in the repo Settings):
+#   1. Repo → Settings → Pages → Source: "GitHub Actions"
+#   2. Repo → Settings → Actions → Workflow permissions:
+#      "Read and write permissions" + "Allow GitHub Actions to create
+#      and approve pull requests"
+#
+# That's it. Push to main, the Action runs, the site updates.
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: 'pages'
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: '.nvmrc'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build Storybook
+        # GitHub Pages serves this site at /Ed_Storybook/, so Storybook
+        # must build with that base path so its asset URLs resolve.
+        run: npx storybook build -o storybook-static
+
+      - name: Add CNAME / .nojekyll guard
+        run: |
+          touch storybook-static/.nojekyll
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: storybook-static
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

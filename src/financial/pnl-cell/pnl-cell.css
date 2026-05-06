@@ -1,0 +1,94 @@
+/* ================================================================
+   Component · PnL Cell
+   ================================================================ */
+
+.eds-pnl {
+  display: inline-flex;
+  align-items: baseline;
+  gap: var(--space-2, 8px);
+  font-family: 'JetBrains Mono', monospace;
+  font-variant-numeric: tabular-nums;
+  line-height: 1.2;
+}
+
+.eds-pnl__value {
+  font-weight: 500;
+  color: var(--text-primary);
+}
+
+.eds-pnl__ccy {
+  color: var(--text-tertiary);
+  font-weight: 400;
+  margin-right: 4px;
+  font-size: 0.85em;
+}
+
+.eds-pnl__delta {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 4px;
+  font-weight: 500;
+}
+
+.eds-pnl__glyph {
+  font-size: 0.85em;
+}
+
+.eds-pnl__delta-pct {
+  color: inherit;
+  opacity: 0.85;
+}
+
+/* ── Direction ───────────────────────────────────────────── */
+
+.eds-pnl--positive .eds-pnl__delta {
+  color: var(--color-positive);
+}
+
+.eds-pnl--negative .eds-pnl__delta {
+  color: var(--color-negative);
+}
+
+.eds-pnl--neutral .eds-pnl__delta {
+  color: var(--text-tertiary);
+}
+
+/* ── Sizes ───────────────────────────────────────────────── */
+
+.eds-pnl--sm {
+  font-size: 0.78rem;
+  gap: 6px;
+}
+
+.eds-pnl--md {
+  font-size: 0.9rem;
+}
+
+.eds-pnl--lg {
+  font-size: 1.25rem;
+  gap: var(--space-3, 12px);
+}
+
+.eds-pnl--lg .eds-pnl__value {
+  font-weight: 600;
+}
+
+/* ── Block layout ─────────────────────────────────────────
+   Stacks value + delta on two lines (e.g. for KPI cards). */
+
+.eds-pnl--block {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 4px;
+}
+
+/* ── Salt theme ──────────────────────────────────────────── */
+
+[data-theme='salt'] .eds-pnl__value {
+  color: var(--eds-text-1);
+}
+
+[data-theme='salt'] .eds-pnl--neutral .eds-pnl__delta {
+  color: var(--eds-text-3);
+}

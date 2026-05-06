@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Evaluation set — eds-mcp-server v0.1
+  Generated 2026-05-06.
+
+  Each question is independent, read-only, and has a single string-comparable
+  answer that is stable as long as the shipped design-system surface
+  (storybook-next/v0.3) doesn't change. Answers were verified by direct
+  tool calls against the running server.
+
+  Coverage summary:
+   • eds_list_components       → Q1
+   • eds_get_token             → Q2, Q3
+   • eds_list_tokens           → Q4
+   • eds_list_icons            → Q5
+   • eds_get_component         → Q6, Q7, Q8
+   • eds_get_brand_rule        → Q9, Q10
+-->
+<evaluation>
+  <qa_pair>
+    <question>Across all categories combined (foundations, primitives, components, financial, compliance, aml, b2b, patterns), how many total components are currently published in the Edwson Design System library? Answer with the integer count only.</question>
+    <answer>19</answer>
+  </qa_pair>
+
+  <qa_pair>
+    <question>What is the hex color value of the design system's single accent color token (--accent)? Answer with the lowercase hex string including the leading '#' (e.g., '#000000').</question>
+    <answer>#c9a959</answer>
+  </qa_pair>
+
+  <qa_pair>
+    <question>How many components in the Edwson Design System reference the --accent token inside their CSS files (i.e., a reverse-lookup of usage)? Answer with the integer count only.</question>
+    <answer>18</answer>
+  </qa_pair>
+
+  <qa_pair>
+    <question>How many design tokens belong to the 'space' (spacing) group of the Edwson Design System? Answer with the integer count only.</question>
+    <answer>12</answer>
+  </qa_pair>
+
+  <qa_pair>
+    <question>How many icons are registered in the Edwson Design System's icon set (the registry under foundations/icons)? Answer with the integer count only.</question>
+    <answer>42</answer>
+  </qa_pair>
+
+  <qa_pair>
+    <question>In which top-level category folder of the Edwson Design System does the CommandPalette component currently live? Answer with the lowercase category name only (e.g., 'primitives').</question>
+    <answer>patterns</answer>
+  </qa_pair>
+
+  <qa_pair>
+    <question>How many distinct regime variants does the Regime Chip component support (e.g., bear, bull, etc.)? Answer with the integer count only.</question>
+    <answer>5</answer>
+  </qa_pair>
+
+  <qa_pair>
+    <question>How many stories are exported from the Disclosure Banner component's stories file? Answer with the integer count only.</question>
+    <answer>5</answer>
+  </qa_pair>
+
+  <qa_pair>
+    <question>The Edwson Design System has a brand-discipline rule that prohibits naming incumbent products (Bloomberg, Refinitiv, Eikon, etc.) on portfolio surfaces. What is the exact rule_id of that rule? Answer with the kebab-case identifier only.</question>
+    <answer>voice-no-incumbent</answer>
+  </qa_pair>
+
+  <qa_pair>
+    <question>How many brand-discipline rules are documented in the Edwson Design System's rule catalogue? Answer with the integer count only.</question>
+    <answer>10</answer>
+  </qa_pair>
+</evaluation>

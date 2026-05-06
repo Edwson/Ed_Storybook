@@ -1,0 +1,68 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Welcome" />
+
+# Edwson Design System
+
+> Institutional-finance component library. Built for surfaces that get audited.
+
+This is the **working component library** behind Ed Chen's portfolio. The
+[design-system-showcase](https://edwson.com/design-system-showcase.html) page is
+the marketing surface; this Storybook is the source of truth — every component
+ships with props, states, controls, accessibility checks, and a documentation
+page that survives a third-engineering-team rotation.
+
+## What this is
+
+- A **vanilla-JS / HTML-first** component library — no React, no JSX, no
+  framework lock-in. Each component exports a render function that returns a
+  string of HTML or a DOM node.
+- **Token-driven**: all color, spacing, type, motion values come from
+  [`/css/tokens.css`](../../css/tokens.css) — the same file the rest of the
+  portfolio uses.
+- **Two themes** wired via the toolbar: `Institutional Dark` (default) and
+  `Salt Light` (Xanthos / Christie's / Double-Blind cream surfaces).
+- **Two density modes**: `Comfortable` and `Compact`.
+- **WCAG 2.1 AA** as the floor — the a11y addon runs on every story.
+
+## What this is not
+
+- Not a Bloomberg / Refinitiv / Tradeweb clone. The vocabulary overlaps because
+  the domain overlaps; the decisions don't.
+- Not a marketing artifact. If a component is here, it has props, states, and
+  edge cases. If it doesn't, it's not ready to ship.
+- Not a generic UI kit. Most components encode regulatory or institutional
+  posture (FINRA / MiFID II / ASIC RG 268 / FATF / SEC 17a-4) — read the docs
+  page on each component for the specific anchor.
+
+## How it's organized
+
+| Section | Scope |
+| --- | --- |
+| **Foundations** | Color, typography, spacing, radius, motion, elevation, icons, WCAG contrast ladder |
+| **Primitives** | Button, input, select, checkbox, radio, toggle, slider, badge, chip, avatar, tag |
+| **Components** | Card, alert, tooltip, accordion, modal, pagination, breadcrumb, tabs |
+| **Financial** | PnL cell, price tick, depth bar, regime chip, VIX chip, yield curve, order ticket |
+| **Compliance** | Disclosure banner, KYC step, threshold band, FIX state chip, SAR row |
+| **AML** | Sanctions screen, PEP monitor, risk score, UBO graph, monitoring queue |
+| **B2B SaaS** | CLM kanban, pricing tier card, health score, provisioning wizard, SSO admin |
+| **Patterns** | Command palette, dashboard grid, kanban, data table, form layout |
+
+## Getting started
+
+```bash
+npm install
+npm run storybook        # → http://localhost:6006
+npm run build-storybook  # → ./storybook-static
+```
+
+## Roadmap
+
+This is **v0.1**. The reference implementation covers the scaffold + 8
+foundations + 5 representative components — one per complexity tier. The
+remaining ~140 components are listed in [`ROADMAP.md`](../../ROADMAP.md) and
+will be added in batches following the same pattern.
+
+---
+
+*Maintained by Ed Chen · ed@edwson.com · [edwson.com](https://edwson.com)*

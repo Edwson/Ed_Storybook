@@ -1,0 +1,83 @@
+/* Foundations · Elevation story styles */
+
+.eds-elev-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: var(--space-5, 24px);
+  padding: var(--space-7, 40px) var(--space-5, 24px);
+  background: var(--bg-deep);
+  border-radius: var(--radius-l, 12px);
+  border: 1px solid var(--border);
+}
+
+.eds-elev-card {
+  display: grid;
+  gap: var(--space-2, 8px);
+  padding: var(--space-5, 24px);
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-l, 12px);
+  font-family: 'Inter', sans-serif;
+}
+
+.eds-elev-card__var {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  color: var(--accent);
+}
+
+.eds-elev-card__val {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  color: var(--text-secondary);
+  word-break: break-all;
+}
+
+.eds-elev-card__use {
+  font-size: 12px;
+  color: var(--text-tertiary);
+}
+
+/* Pair (surface vs shadow) */
+.eds-elev-pair {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: var(--space-4, 16px);
+  padding: var(--space-7, 40px);
+  background: var(--bg-deep);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-l, 12px);
+}
+
+.eds-elev-pair__card {
+  padding: var(--space-5, 24px);
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-l, 12px);
+  font-family: 'Inter', sans-serif;
+}
+
+.eds-elev-pair__card--border {
+  background: var(--bg-elevated);
+  border-color: var(--border-hover);
+}
+
+.eds-elev-pair__card--shadow {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.45);
+}
+
+.eds-elev-pair__label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-tertiary);
+  margin-bottom: var(--space-2, 8px);
+}
+
+.eds-elev-pair__card p {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  line-height: 1.55;
+  margin: 0;
+}

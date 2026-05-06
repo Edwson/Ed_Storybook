@@ -1,0 +1,205 @@
+/* ================================================================
+   Component · Button
+   Token-driven · BEM · zero !important · zero inline styles
+   ================================================================ */
+
+.eds-btn {
+  --btn-h: 40px;
+  --btn-px: var(--space-4, 16px);
+  --btn-fs: 0.875rem;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2, 8px);
+  height: var(--btn-h);
+  min-width: var(--btn-h);
+  padding: 0 var(--btn-px);
+  font-family: 'Inter', sans-serif;
+  font-size: var(--btn-fs);
+  font-weight: 500;
+  line-height: 1;
+  border-radius: var(--radius-m, 8px);
+  border: 1px solid transparent;
+  cursor: pointer;
+  user-select: none;
+  white-space: nowrap;
+  transition:
+    background-color var(--duration-fast, 120ms) var(--ease, ease),
+    border-color var(--duration-fast, 120ms) var(--ease, ease),
+    transform var(--duration-fast, 120ms) var(--ease, ease),
+    color var(--duration-fast, 120ms) var(--ease, ease);
+  position: relative;
+}
+
+.eds-btn:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.eds-btn:disabled,
+.eds-btn[aria-disabled='true'] {
+  opacity: 0.45;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.eds-btn__label {
+  display: inline-flex;
+  align-items: center;
+}
+
+.eds-btn__icon {
+  display: inline-flex;
+  align-items: center;
+  width: 1em;
+  height: 1em;
+}
+
+.eds-btn__icon svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+/* ── Variants ────────────────────────────────────────────── */
+
+.eds-btn--primary {
+  background: var(--accent);
+  color: var(--bg-void);
+  border-color: var(--accent);
+}
+
+.eds-btn--primary:hover:not(:disabled) {
+  background: color-mix(in srgb, var(--accent) 92%, white);
+  transform: translateY(-1px);
+}
+
+.eds-btn--primary:active:not(:disabled) {
+  transform: translateY(0);
+  background: color-mix(in srgb, var(--accent) 88%, black);
+}
+
+.eds-btn--secondary {
+  background: var(--bg-surface);
+  color: var(--text-primary);
+  border-color: var(--border);
+}
+
+.eds-btn--secondary:hover:not(:disabled) {
+  background: var(--bg-elevated);
+  border-color: var(--border-hover);
+}
+
+.eds-btn--ghost {
+  background: transparent;
+  color: var(--text-primary);
+  border-color: transparent;
+}
+
+.eds-btn--ghost:hover:not(:disabled) {
+  background: var(--accent-08);
+  color: var(--accent);
+}
+
+.eds-btn--danger {
+  background: rgba(232, 93, 93, 0.12);
+  color: #e85d5d;
+  border-color: rgba(232, 93, 93, 0.35);
+}
+
+.eds-btn--danger:hover:not(:disabled) {
+  background: rgba(232, 93, 93, 0.2);
+  border-color: rgba(232, 93, 93, 0.6);
+}
+
+.eds-btn--link {
+  background: transparent;
+  color: var(--accent);
+  border-color: transparent;
+  padding: 0;
+  height: auto;
+  min-width: 0;
+  text-decoration: none;
+}
+
+.eds-btn--link:hover:not(:disabled) {
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+/* ── Sizes ───────────────────────────────────────────────── */
+
+.eds-btn--sm {
+  --btn-h: 28px;
+  --btn-px: var(--space-3, 12px);
+  --btn-fs: 0.78rem;
+  border-radius: var(--radius-s, 4px);
+}
+
+.eds-btn--md {
+  --btn-h: 40px;
+  --btn-px: var(--space-4, 16px);
+  --btn-fs: 0.875rem;
+}
+
+.eds-btn--lg {
+  --btn-h: 48px;
+  --btn-px: var(--space-5, 24px);
+  --btn-fs: 1rem;
+}
+
+/* ── Block (full-width) ──────────────────────────────────── */
+
+.eds-btn--block {
+  width: 100%;
+}
+
+/* ── Loading state ───────────────────────────────────────── */
+
+.eds-btn--loading .eds-btn__label {
+  visibility: hidden;
+}
+
+.eds-btn__spinner {
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  border: 2px solid currentColor;
+  border-top-color: transparent;
+  border-radius: 50%;
+  animation: eds-btn-spin 700ms linear infinite;
+}
+
+@keyframes eds-btn-spin {
+  to { transform: rotate(360deg); }
+}
+
+/* ── Reduced motion ──────────────────────────────────────── */
+
+@media (prefers-reduced-motion: reduce) {
+  .eds-btn,
+  .eds-btn__spinner {
+    transition: none !important;
+    animation: none !important;
+  }
+  .eds-btn:hover {
+    transform: none !important;
+  }
+}
+
+/* ── Salt theme overrides ────────────────────────────────── */
+
+[data-theme='salt'] .eds-btn--primary {
+  color: #ffffff;
+}
+
+[data-theme='salt'] .eds-btn--secondary {
+  background: rgba(255, 255, 255, 0.85);
+  color: #2a180c;
+  border-color: rgba(66, 36, 12, 0.18);
+}
+
+[data-theme='salt'] .eds-btn--ghost {
+  color: #2a180c;
+}

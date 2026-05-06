@@ -1,0 +1,139 @@
+/* ================================================================
+   Component · Toggle (switch)
+   ================================================================ */
+
+.eds-toggle {
+  --tg-w: 36px;
+  --tg-h: 20px;
+  --tg-thumb: 14px;
+
+  display: inline-grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  gap: var(--space-3, 12px);
+  font-family: 'Inter', sans-serif;
+  font-size: 0.9rem;
+  cursor: pointer;
+  user-select: none;
+}
+
+.eds-toggle__body {
+  display: grid;
+  gap: 2px;
+}
+
+.eds-toggle__label {
+  color: var(--text-primary);
+}
+
+.eds-toggle__helper {
+  font-size: 0.78rem;
+  color: var(--text-tertiary);
+}
+
+.eds-toggle__state-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-tertiary);
+}
+
+.eds-toggle__switch {
+  position: relative;
+  width: var(--tg-w);
+  height: var(--tg-h);
+  flex: none;
+}
+
+.eds-toggle__input {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  cursor: pointer;
+}
+
+.eds-toggle__track {
+  position: absolute;
+  inset: 0;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-hover);
+  border-radius: 999px;
+  transition:
+    background var(--duration-fast, 120ms) var(--ease, ease),
+    border-color var(--duration-fast, 120ms) var(--ease, ease);
+  pointer-events: none;
+}
+
+.eds-toggle__thumb {
+  position: absolute;
+  top: 50%;
+  left: 2px;
+  width: var(--tg-thumb);
+  height: var(--tg-thumb);
+  transform: translateY(-50%);
+  background: var(--text-secondary);
+  border-radius: 50%;
+  transition:
+    left var(--duration-fast, 120ms) var(--ease, ease),
+    background var(--duration-fast, 120ms) var(--ease, ease);
+}
+
+.eds-toggle__input:checked ~ .eds-toggle__track {
+  background: var(--accent);
+  border-color: var(--accent);
+}
+
+.eds-toggle__input:checked ~ .eds-toggle__track .eds-toggle__thumb {
+  left: calc(100% - var(--tg-thumb) - 2px);
+  background: var(--bg-void);
+}
+
+.eds-toggle__input:focus-visible ~ .eds-toggle__track {
+  box-shadow: 0 0 0 3px var(--accent-15);
+  border-color: var(--accent);
+}
+
+.eds-toggle:hover .eds-toggle__track {
+  border-color: var(--accent);
+}
+
+.eds-toggle--sm {
+  --tg-w: 28px;
+  --tg-h: 16px;
+  --tg-thumb: 10px;
+}
+
+.eds-toggle--disabled {
+  cursor: not-allowed;
+  opacity: 0.55;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .eds-toggle__track,
+  .eds-toggle__thumb {
+    transition: none !important;
+  }
+}
+
+/* ── Salt theme ──────────────────────────────────────────── */
+
+[data-theme='salt'] .eds-toggle__track {
+  background: rgba(66, 36, 12, 0.08);
+  border-color: var(--eds-border-strong);
+}
+
+[data-theme='salt'] .eds-toggle__thumb {
+  background: var(--eds-text-2);
+}
+
+[data-theme='salt'] .eds-toggle__input:checked ~ .eds-toggle__track .eds-toggle__thumb {
+  background: #ffffff;
+}
+
+[data-theme='salt'] .eds-toggle__label {
+  color: var(--eds-text-1);
+}

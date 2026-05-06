@@ -1,0 +1,152 @@
+/* ================================================================
+   Component · Input (form field)
+   ================================================================ */
+
+.eds-field {
+  --field-h: 40px;
+  --field-fs: 0.9rem;
+  --field-px: var(--space-3, 12px);
+  --field-border: var(--border);
+
+  display: grid;
+  gap: 6px;
+  font-family: 'Inter', sans-serif;
+}
+
+.eds-field__label {
+  font-size: 0.78rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  color: var(--text-secondary);
+  text-transform: none;
+}
+
+.eds-field__req {
+  color: var(--accent);
+  margin-left: 2px;
+}
+
+.eds-field__control {
+  display: flex;
+  align-items: stretch;
+  height: var(--field-h);
+  background: var(--bg-surface);
+  border: 1px solid var(--field-border);
+  border-radius: var(--radius-m, 8px);
+  transition:
+    border-color var(--duration-fast, 120ms) var(--ease, ease),
+    box-shadow var(--duration-fast, 120ms) var(--ease, ease);
+}
+
+.eds-field__control:focus-within {
+  --field-border: var(--accent);
+  box-shadow: 0 0 0 3px var(--accent-15);
+}
+
+.eds-field__input {
+  flex: 1;
+  min-width: 0;
+  background: transparent;
+  border: none;
+  outline: none;
+  padding: 0 var(--field-px);
+  font-family: inherit;
+  font-size: var(--field-fs);
+  color: var(--text-primary);
+  font-variant-numeric: tabular-nums;
+}
+
+.eds-field__input::placeholder {
+  color: var(--text-muted);
+}
+
+.eds-field__input:disabled {
+  cursor: not-allowed;
+}
+
+.eds-field__affix {
+  display: inline-flex;
+  align-items: center;
+  padding: 0 var(--field-px);
+  color: var(--text-tertiary);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.78rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  background: var(--bg-elevated);
+  white-space: nowrap;
+}
+
+.eds-field__affix--prefix {
+  border-right: 1px solid var(--border);
+  border-radius: var(--radius-m, 8px) 0 0 var(--radius-m, 8px);
+}
+
+.eds-field__affix--suffix {
+  border-left: 1px solid var(--border);
+  border-radius: 0 var(--radius-m, 8px) var(--radius-m, 8px) 0;
+}
+
+.eds-field__helper {
+  font-size: 0.75rem;
+  color: var(--text-tertiary);
+  line-height: 1.4;
+}
+
+/* ── Sizes ───────────────────────────────────────────────── */
+
+.eds-field--sm {
+  --field-h: 28px;
+  --field-fs: 0.78rem;
+  --field-px: var(--space-2, 8px);
+}
+
+.eds-field--lg {
+  --field-h: 48px;
+  --field-fs: 1rem;
+  --field-px: var(--space-4, 16px);
+}
+
+/* ── Error state ─────────────────────────────────────────── */
+
+.eds-field--error .eds-field__control {
+  --field-border: rgba(232, 93, 93, 0.55);
+  box-shadow: 0 0 0 3px rgba(232, 93, 93, 0.15);
+}
+
+.eds-field--error .eds-field__helper {
+  color: #e85d5d;
+}
+
+/* ── Disabled state ──────────────────────────────────────── */
+
+.eds-field--disabled .eds-field__control {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .eds-field__control {
+    transition: none !important;
+  }
+}
+
+/* ── Salt theme ──────────────────────────────────────────── */
+
+[data-theme='salt'] .eds-field__control {
+  background: var(--eds-bg-card);
+  border-color: var(--eds-border);
+}
+
+[data-theme='salt'] .eds-field__input {
+  color: var(--eds-text-1);
+}
+
+[data-theme='salt'] .eds-field__affix {
+  background: rgba(66, 36, 12, 0.06);
+  color: var(--eds-text-2);
+}
+
+[data-theme='salt'] .eds-field__label {
+  color: var(--eds-text-2);
+}
