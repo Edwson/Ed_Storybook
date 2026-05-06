@@ -1,0 +1,115 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Welcome" />
+
+<div className="eds-hero">
+  <div className="eds-hero__eyebrow">v0.7 · institutional finance</div>
+
+# Edwson Design System
+
+  <p className="eds-hero__lede">
+    A working component library for surfaces that get audited.<br/>
+    Built for the trading desk, the compliance officer, and the room where the regulator sits.
+  </p>
+
+</div>
+
+<div className="eds-card-grid">
+  <a className="eds-card" href="?path=/docs/foundations-color--docs">
+    <span className="eds-card__eyebrow">Foundations</span>
+    <h3 className="eds-card__title">Tokens, type, motion, contrast</h3>
+    <p className="eds-card__body">
+      Seven foundations — colour, typography, spacing, motion, elevation,
+      icons, WCAG contrast — every component reads from these.
+    </p>
+    <span className="eds-card__cta">Read more →</span>
+  </a>
+
+  <a className="eds-card" href="?path=/docs/patterns-dashboard-grid--docs">
+    <span className="eds-card__eyebrow">Showpiece</span>
+    <h3 className="eds-card__title">Dashboard Grid</h3>
+    <p className="eds-card__body">
+      Ten components composed into a Bloomberg-class trading-desk surface.
+      The 60-second hire test for the system.
+    </p>
+    <span className="eds-card__cta">See it in motion →</span>
+  </a>
+
+  <a className="eds-card" href="?path=/docs/compliance-fix-state-chip--docs">
+    <span className="eds-card__eyebrow">Compliance</span>
+    <h3 className="eds-card__title">Regulation as a citation</h3>
+    <p className="eds-card__body">
+      FIX 4.4 OrdStatus · MAS Notice 626 · ASIC RG 268 · SEC 17a-4.
+      Every compliance component cites the rule it satisfies.
+    </p>
+    <span className="eds-card__cta">Browse compliance →</span>
+  </a>
+</div>
+
+<hr className="eds-rule" />
+
+## What's covered  ·  v0.7
+
+| Domain | Status | Notes |
+| --- | --- | --- |
+| Foundations | 7 / 8 | Colour · Typography · Spacing · Motion · Elevation · Icons · WCAG. |
+| Primitives | 8 / 12 | Button · Input · Select · Checkbox · Radio · Toggle · Badge · Avatar. |
+| Components | 6 / 14 | Card · Alert · Tooltip · **Tabs** · **Modal** · **Spinner**. |
+| **Financial** | **6 / 25** | PnL Cell · Price Tick · Regime Chip · VIX Chip · Order Row · Position Row. Where institutional craft lives. |
+| **Compliance** | **4 / 12** | Disclosure Banner · KYC Step · FIX State Chip · Threshold Band. Every component cites the regulation. |
+| Patterns | 2 / 6 | Command Palette · Dashboard Grid (showpiece). |
+
+**33 stories shipped**.  Roadmap: [`ROADMAP.md`](https://github.com/Edwson/Ed_Storybook/blob/main/ROADMAP.md) · [`CHANGELOG.md`](https://github.com/Edwson/Ed_Storybook/blob/main/CHANGELOG.md).
+
+---
+
+## How this is organised
+
+Five domains, ordered by how an institutional product engineer reads a component library.
+
+**Foundations** are the system's physical laws — tokens, type, spacing, motion, contrast.
+Change a foundation and the rest flexes. Don't change them without writing the migration first.
+
+**Primitives** are single-purpose form atoms (Button, Input, Toggle).
+They have to be boring and correct. Every product surface in the firm uses them.
+
+**Components** are assembled UI for a specific job (Card, Alert, Tabs, Modal, Spinner).
+Composed from primitives + tokens. This is where product personality emerges.
+
+**Financial** is institutional craft — a PnL cell that aligns at the decimal point, an order row that fits 11 columns at fixed pixel widths, a regime chip that reads at 11px in tabular-nums.
+
+**Compliance** encodes a regulatory workflow rather than a UI shape. FIX State Chip cites SEC Rule 17a-4. Threshold Band cites MAS Notice 626 §8.3. KYC Step cites FATF Rec 10.
+
+**Patterns** sit on top — proven compositions (Command Palette, Dashboard Grid) the team can reuse rather than re-derive.
+
+---
+
+## Conventions
+
+- **Vanilla JS · HTML-first.** No React, no JSX, no framework lock-in.
+- **Token-driven.** Every value is a CSS custom property.
+- **BEM with `.eds-` namespace.** No CSS-in-JS. Greppable, survives a CSS reset.
+- **Tabular-nums on every numeric cell.** PnL columns read top-to-bottom.
+- **Direction is never colour-only.** Colour pairs with arrow + sign + label.
+- **WCAG 2.1 AA is the floor.** The a11y addon runs on every story.
+- **Live data does not animate.** Price ticks update instantly.
+- **Two themes.** Institutional Dark (default) + Salt Light (cream surfaces).
+- **Two density modes.** Comfortable (default) + Compact (institutional dense).
+
+---
+
+## Where to start
+
+- **Hiring manager** — [Patterns / Dashboard Grid](?path=/docs/patterns-dashboard-grid--docs). Ten components in one trading-desk surface. Sixty-second read.
+- **Designer** — [Foundations / Color](?path=/docs/foundations-color--docs) and walk down to WCAG.
+- **Engineer** — [Primitives / Button](?path=/docs/primitives-button--docs) for the canonical render-function shape.
+- **Compliance** — [Compliance / FIX State Chip](?path=/docs/compliance-fix-state-chip--docs).
+
+---
+
+## Repository
+
+- Source · [`github.com/Edwson/Ed_Storybook`](https://github.com/Edwson/Ed_Storybook)
+- Live · [`edwson.github.io/Ed_Storybook`](https://edwson.github.io/Ed_Storybook)
+- Maintainer · Ed Chen — `ed [at] edwson.com`
+- License · MIT
