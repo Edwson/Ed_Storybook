@@ -1,6 +1,7 @@
 /* ================================================================
    Component · Button
-   Token-driven · BEM · zero !important · zero inline styles
+   Token-driven · BEM · zero !important · zero inline styles.
+   Theme-aware via the base tokens flipping at the data-theme attr.
    ================================================================ */
 
 .eds-btn {
@@ -62,11 +63,9 @@
   display: block;
 }
 
-/* ── Variants ────────────────────────────────────────────── */
-
 .eds-btn--primary {
   background: var(--accent);
-  color: var(--bg-void);
+  color: var(--accent-fg);
   border-color: var(--accent);
 }
 
@@ -103,14 +102,14 @@
 }
 
 .eds-btn--danger {
-  background: rgba(232, 93, 93, 0.12);
-  color: #e85d5d;
-  border-color: rgba(232, 93, 93, 0.35);
+  background: var(--color-danger-subtle);
+  color: var(--color-danger);
+  border-color: var(--color-danger-border);
 }
 
 .eds-btn--danger:hover:not(:disabled) {
-  background: rgba(232, 93, 93, 0.2);
-  border-color: rgba(232, 93, 93, 0.6);
+  background: color-mix(in srgb, var(--color-danger) 22%, transparent);
+  border-color: var(--color-danger);
 }
 
 .eds-btn--link {
@@ -127,8 +126,6 @@
   text-decoration: underline;
   text-underline-offset: 2px;
 }
-
-/* ── Sizes ───────────────────────────────────────────────── */
 
 .eds-btn--sm {
   --btn-h: 28px;
@@ -149,13 +146,9 @@
   --btn-fs: 1rem;
 }
 
-/* ── Block (full-width) ──────────────────────────────────── */
-
 .eds-btn--block {
   width: 100%;
 }
-
-/* ── Loading state ───────────────────────────────────────── */
 
 .eds-btn--loading .eds-btn__label {
   visibility: hidden;
@@ -175,8 +168,6 @@
   to { transform: rotate(360deg); }
 }
 
-/* ── Reduced motion ──────────────────────────────────────── */
-
 @media (prefers-reduced-motion: reduce) {
   .eds-btn,
   .eds-btn__spinner {
@@ -186,20 +177,4 @@
   .eds-btn:hover {
     transform: none !important;
   }
-}
-
-/* ── Salt theme overrides ────────────────────────────────── */
-
-[data-theme='salt'] .eds-btn--primary {
-  color: #ffffff;
-}
-
-[data-theme='salt'] .eds-btn--secondary {
-  background: rgba(255, 255, 255, 0.85);
-  color: #2a180c;
-  border-color: rgba(66, 36, 12, 0.18);
-}
-
-[data-theme='salt'] .eds-btn--ghost {
-  color: #2a180c;
 }
