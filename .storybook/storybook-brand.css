@@ -1,11 +1,9 @@
 /* ================================================================
-   EDS — Storybook preview canvas chrome
+   EDS — Storybook preview chrome  ·  v0.7 editorial dark
 
-   Body bg + colour follow whatever --bg-void / --text-primary
-   resolve to under the current theme. Because tokens.css now
-   redefines those at [data-theme='salt'], the body flips
-   automatically when the theme toolbar switches — no per-theme
-   body rule needed.
+   Aesthetic target: Audi · JPL · Salt — editorial restraint, not
+   engineering utility. Generous whitespace, massive display headlines,
+   refined typography hierarchy, hairline dividers, subtle elevation.
    ================================================================ */
 
 html,
@@ -16,7 +14,10 @@ body {
   color: var(--text-primary);
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   font-size: 16px;
-  line-height: 1.5;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
   transition:
     background var(--duration-base, 200ms) var(--ease, ease),
     color var(--duration-base, 200ms) var(--ease, ease);
@@ -32,19 +33,15 @@ body {
 }
 
 /* ================================================================
-   Storybook autodocs theming — comprehensive overrides
+   Storybook autodocs theming — editorial-tier hierarchy
 
-   Storybook docs (.sbdocs) ships with light-mode-only colours hard-
-   coded inside the iframe. When our dark theme makes the wrapper
-   bg = #060810, the default Storybook TOC links / error displays /
-   table cells / inline code all stay rgb(0..50) → invisible.
-
-   These overrides force every docs-internal text colour to follow
-   the active theme tokens. Specificity is bumped via .sbdocs prefix
-   (more specific than emotion-generated .css-* runtime classes).
+   Replaces Storybook's default light-mode-only docs typography
+   with display Cormorant headlines, generous body line-height,
+   hairline dividers, and refined links. Every text colour resolves
+   from --text-primary / --text-secondary so themes flip cleanly.
    ================================================================ */
 
-/* Wrapper + base typography */
+/* Wrapper + base */
 
 .sbdocs,
 .sbdocs-wrapper,
@@ -55,29 +52,86 @@ body {
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
 }
 
-.sbdocs h1,
-.sbdocs h2,
-.sbdocs h3,
+.sbdocs-wrapper {
+  padding-top: 56px !important;
+  padding-bottom: 96px !important;
+}
+
+/* Display typography — Cormorant Garamond at editorial scale */
+
+.sbdocs h1 {
+  font-family: 'Cormorant Garamond', Georgia, serif !important;
+  font-weight: 300 !important;
+  font-size: clamp(2.6rem, 5vw + 1rem, 4.6rem) !important;
+  line-height: 1.05 !important;
+  letter-spacing: -0.02em !important;
+  color: var(--text-primary) !important;
+  margin: 0 0 var(--space-5, 24px) !important;
+  border-bottom: none !important;
+  max-width: 22ch;
+}
+
+.sbdocs h2 {
+  font-family: 'Cormorant Garamond', Georgia, serif !important;
+  font-weight: 400 !important;
+  font-size: clamp(1.8rem, 2vw + 1rem, 2.4rem) !important;
+  line-height: 1.15 !important;
+  letter-spacing: -0.01em !important;
+  color: var(--text-primary) !important;
+  margin: var(--space-9, 64px) 0 var(--space-4, 16px) !important;
+  padding-bottom: 0 !important;
+  padding-top: var(--space-7, 40px) !important;
+  border-top: 1px solid var(--border) !important;
+  border-bottom: none !important;
+}
+
+.sbdocs h3 {
+  font-family: 'Inter', sans-serif !important;
+  font-weight: 600 !important;
+  font-size: 1.05rem !important;
+  letter-spacing: 0.02em !important;
+  color: var(--text-primary) !important;
+  margin: var(--space-6, 32px) 0 var(--space-3, 12px) !important;
+  border-bottom: none !important;
+  text-transform: uppercase;
+  font-size: 0.78rem !important;
+}
+
 .sbdocs h4,
 .sbdocs h5,
 .sbdocs h6 {
-  font-family: 'Cormorant Garamond', Georgia, serif;
-  font-weight: 400;
-  letter-spacing: -0.01em;
+  font-family: 'Inter', sans-serif !important;
+  font-weight: 500 !important;
   color: var(--text-primary) !important;
-  border-bottom-color: var(--border) !important;
+  border-bottom: none !important;
 }
 
+/* Body text — generous line-height, refined colour */
+
 .sbdocs p,
-.sbdocs li,
-.sbdocs ul,
-.sbdocs ol,
-.sbdocs dt,
-.sbdocs dd,
-.sbdocs blockquote,
-.sbdocs em,
-.sbdocs i {
+.sbdocs li {
+  font-size: 1rem !important;
+  line-height: 1.7 !important;
   color: var(--text-secondary) !important;
+}
+
+.sbdocs > p:first-of-type,
+.sbdocs h1 + p {
+  font-size: 1.18rem !important;
+  line-height: 1.6 !important;
+  color: var(--text-secondary) !important;
+  max-width: 64ch;
+}
+
+.sbdocs ul,
+.sbdocs ol {
+  margin: var(--space-4, 16px) 0 !important;
+  padding-left: var(--space-5, 24px) !important;
+}
+
+.sbdocs ul li,
+.sbdocs ol li {
+  margin-bottom: 6px !important;
 }
 
 .sbdocs strong,
@@ -86,19 +140,41 @@ body {
   font-weight: 600;
 }
 
-.sbdocs hr {
-  border-color: var(--border) !important;
-  background-color: var(--border) !important;
+.sbdocs em,
+.sbdocs i {
+  color: var(--text-secondary) !important;
+  font-style: italic;
 }
 
-/* Links — always readable on both themes */
+.sbdocs hr {
+  border: none !important;
+  border-top: 1px solid var(--border) !important;
+  background: transparent !important;
+  margin: var(--space-8, 48px) 0 !important;
+  height: 0;
+}
+
+.sbdocs blockquote {
+  margin: var(--space-5, 24px) 0 !important;
+  padding: var(--space-2, 8px) 0 var(--space-2, 8px) var(--space-5, 24px) !important;
+  border-left: 2px solid var(--accent) !important;
+  font-family: 'Cormorant Garamond', Georgia, serif !important;
+  font-style: italic !important;
+  font-size: 1.25rem !important;
+  line-height: 1.5 !important;
+  color: var(--text-primary) !important;
+  background: transparent !important;
+}
+
+/* Links — accent on hover with hairline underline */
 
 .sbdocs a,
 .sbdocs a:visited {
   color: var(--accent) !important;
   text-decoration: none;
-  border-bottom: 1px solid transparent;
-  transition: border-color 120ms ease;
+  border-bottom: 1px solid color-mix(in srgb, var(--accent) 35%, transparent);
+  transition: border-color 120ms ease, color 120ms ease;
+  padding-bottom: 1px;
 }
 
 .sbdocs a:hover,
@@ -107,7 +183,7 @@ body {
   color: var(--accent) !important;
 }
 
-/* Code blocks — JetBrains Mono on theme bg */
+/* Code — JetBrains Mono on bg-elevated */
 
 .sbdocs code,
 .sbdocs pre,
@@ -119,9 +195,10 @@ body {
 .sbdocs code {
   background: var(--bg-elevated) !important;
   color: var(--accent) !important;
-  padding: 1px 5px;
+  padding: 2px 6px;
   border-radius: 3px;
   border: 1px solid var(--border);
+  font-size: 0.86em;
 }
 
 .sbdocs pre {
@@ -129,7 +206,9 @@ body {
   color: var(--text-primary) !important;
   border: 1px solid var(--border) !important;
   border-radius: 8px;
-  padding: 12px 16px;
+  padding: var(--space-4, 16px) var(--space-5, 24px) !important;
+  margin: var(--space-4, 16px) 0 !important;
+  overflow-x: auto;
 }
 
 .sbdocs pre code {
@@ -137,16 +216,21 @@ body {
   border: none !important;
   color: var(--text-primary) !important;
   padding: 0;
+  font-size: 0.86rem !important;
 }
 
-/* Tables — surface tinted, theme-flippable */
+/* Tables — surface tinted, refined typography */
 
 .sbdocs table {
-  background: var(--bg-surface) !important;
+  background: transparent !important;
   color: var(--text-primary) !important;
   border: 1px solid var(--border) !important;
-  border-collapse: collapse;
+  border-radius: 8px;
+  border-collapse: separate;
+  border-spacing: 0;
   width: 100%;
+  margin: var(--space-5, 24px) 0 !important;
+  overflow: hidden;
 }
 
 .sbdocs th {
@@ -155,9 +239,10 @@ body {
   border-bottom: 1px solid var(--border) !important;
   font-family: 'JetBrains Mono', monospace;
   font-size: 11px;
-  letter-spacing: 0.06em;
+  font-weight: 500;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
-  padding: 8px 12px;
+  padding: var(--space-3, 12px) var(--space-4, 16px);
   text-align: left;
 }
 
@@ -165,26 +250,47 @@ body {
   background: transparent !important;
   color: var(--text-secondary) !important;
   border-bottom: 1px solid var(--border) !important;
-  padding: 10px 12px;
+  padding: var(--space-3, 12px) var(--space-4, 16px);
+  font-size: 0.92rem;
+  line-height: 1.5;
 }
 
 .sbdocs tr:last-child td {
   border-bottom: none !important;
 }
 
-/* Table of Contents (right rail in docs) */
+.sbdocs td strong,
+.sbdocs th strong {
+  color: var(--text-primary) !important;
+}
+
+/* Right-rail TOC — refined */
 
 .sbdocs .toc-wrapper {
   background: transparent !important;
   border-left: 1px solid var(--border) !important;
+  padding-left: var(--space-5, 24px) !important;
+}
+
+.sbdocs .toc-wrapper > div:first-child,
+.sbdocs .toc-wrapper h3,
+.sbdocs .toc-wrapper > p:first-child {
+  font-family: 'JetBrains Mono', monospace !important;
+  font-size: 10.5px !important;
+  letter-spacing: 0.1em !important;
+  text-transform: uppercase !important;
+  color: var(--text-tertiary) !important;
+  margin-bottom: var(--space-4, 16px) !important;
 }
 
 .sbdocs .toc-list-item,
 .sbdocs .toc-list-item a,
 .sbdocs .toc-link {
   color: var(--text-tertiary) !important;
-  font-family: 'Inter', sans-serif;
-  font-size: 13px;
+  font-family: 'Inter', sans-serif !important;
+  font-size: 13px !important;
+  line-height: 1.6 !important;
+  padding: 4px 0;
 }
 
 .sbdocs .toc-list-item.is-active-li > .toc-link,
@@ -204,6 +310,7 @@ body {
   background: var(--bg-surface) !important;
   color: var(--text-primary) !important;
   border: 1px solid var(--border) !important;
+  border-radius: 8px;
 }
 
 .sbdocs .docblock-argstable,
@@ -237,7 +344,7 @@ body {
   color: var(--text-primary) !important;
 }
 
-/* Story-block preview chrome */
+/* Story-block preview chrome — generous breathing room */
 
 .sbdocs .docs-story,
 .sbdocs .docblock-preview {
@@ -248,7 +355,9 @@ body {
 .sbdocs .sbdocs-preview {
   background: var(--bg-surface) !important;
   border: 1px solid var(--border) !important;
-  border-radius: 8px;
+  border-radius: 12px;
+  padding: var(--space-7, 40px) !important;
+  margin: var(--space-5, 24px) 0 !important;
 }
 
 /* Tab-list inside Source block (Show code / Args) */
@@ -257,13 +366,17 @@ body {
 .sbdocs [role='tablist'] button {
   color: var(--text-tertiary) !important;
   background: transparent !important;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
 }
 
 .sbdocs button[role='tab'][aria-selected='true'] {
   color: var(--accent) !important;
 }
 
-/* Storybook error display — when a story fails to render */
+/* Storybook error display */
 
 .sb-errordisplay,
 .sb-errordisplay_main,
@@ -297,7 +410,7 @@ body {
   border-radius: 3px;
 }
 
-/* Storybook controls inside docs (input chrome) */
+/* Storybook controls inside docs */
 
 .sbdocs input[type='text'],
 .sbdocs input[type='search'],
@@ -307,6 +420,9 @@ body {
   background: var(--bg-surface) !important;
   color: var(--text-primary) !important;
   border: 1px solid var(--border) !important;
+  border-radius: 6px !important;
+  padding: 6px 10px !important;
+  font-size: 0.86rem !important;
 }
 
 .sbdocs input::placeholder {
@@ -314,8 +430,125 @@ body {
 }
 
 /* ================================================================
-   Helper utilities used across stories
+   Editorial helpers — used in Welcome / Foundations MDX
+
+   .eds-hero          — full-bleed display hero
+   .eds-card-grid     — 3-card composition (Audi-style)
+   .eds-card          — surface card with hover lift
+   .eds-eyebrow       — uppercase mono micro-label
+   .eds-rule          — thin gold accent rule
+   .eds-stack         — vertical rhythm
+   .eds-row           — horizontal alignment
+   .eds-meta          — uppercase mono caption
+   .eds-doc-grid      — auto-fill grid for foundations
    ================================================================ */
+
+.eds-hero {
+  padding: var(--space-9, 64px) 0 var(--space-7, 40px);
+  border-bottom: 1px solid var(--border);
+  margin-bottom: var(--space-8, 48px);
+}
+
+.eds-hero__eyebrow {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: var(--space-4, 16px);
+}
+
+.eds-hero__lede {
+  font-size: 1.18rem;
+  line-height: 1.6;
+  color: var(--text-secondary);
+  max-width: 64ch;
+  margin-top: var(--space-4, 16px);
+}
+
+.eds-card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: var(--space-4, 16px);
+  margin: var(--space-6, 32px) 0;
+}
+
+.eds-card {
+  display: block;
+  padding: var(--space-5, 24px);
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  text-decoration: none;
+  color: var(--text-primary);
+  transition:
+    background 160ms var(--ease, ease),
+    border-color 160ms var(--ease, ease),
+    transform 160ms var(--ease, ease);
+}
+
+.eds-card:hover {
+  background: var(--bg-elevated);
+  border-color: color-mix(in srgb, var(--accent) 28%, var(--border));
+  transform: translateY(-1px);
+  border-bottom-color: color-mix(in srgb, var(--accent) 28%, var(--border)) !important;
+}
+
+.eds-card__eyebrow {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10.5px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 10px;
+  display: block;
+}
+
+.eds-card__title {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-weight: 400;
+  font-size: 1.4rem;
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+  color: var(--text-primary);
+  margin: 0 0 8px;
+}
+
+.eds-card__body {
+  font-size: 0.92rem;
+  line-height: 1.55;
+  color: var(--text-secondary);
+  margin: 0;
+}
+
+.eds-card__cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: var(--space-3, 12px);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.eds-eyebrow {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.eds-rule {
+  border: 0;
+  border-top: 1px solid var(--accent);
+  margin: var(--space-6, 32px) 0;
+  width: 48px;
+}
+
+/* Helper utilities used across stories */
 
 .eds-stack {
   display: grid;
