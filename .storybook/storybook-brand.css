@@ -1,4 +1,98 @@
 /* ================================================================
+   EDS — Storybook preview canvas chrome
+
+   Body bg + colour follow whatever --bg-void / --text-primary
+   resolve to under the current theme. Because tokens.css now
+   redefines those at [data-theme='salt'], the body flips
+   automatically when the theme toolbar switches — no per-theme
+   body rule needed.
+   ================================================================ */
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  background: var(--bg-void);
+  color: var(--text-primary);
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+  transition:
+    background var(--duration-base, 200ms) var(--ease, ease),
+    color var(--duration-base, 200ms) var(--ease, ease);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html, body { transition: none !important; }
+}
+
+.eds-preview-host {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  color: var(--text-primary);
+}
+
+/* ── Storybook autodocs styling — readable on both themes ── */
+
+.sbdocs-wrapper {
+  font-family: 'Inter', sans-serif;
+  background: var(--bg-void) !important;
+  color: var(--text-primary) !important;
+}
+
+.sbdocs h1,
+.sbdocs h2,
+.sbdocs h3 {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-weight: 400;
+  letter-spacing: -0.01em;
+  color: var(--text-primary) !important;
+}
+
+.sbdocs p,
+.sbdocs li {
+  color: var(--text-secondary) !important;
+}
+
+.sbdocs code,
+.sbdocs pre {
+  font-family: 'JetBrains Mono', Menlo, Monaco, Consolas, monospace;
+}
+
+.sbdocs code {
+  background: var(--bg-elevated);
+  color: var(--accent);
+  padding: 1px 5px;
+  border-radius: 3px;
+}
+
+/* ── Helper utilities used across stories ── */
+
+.eds-stack {
+  display: grid;
+  gap: var(--space-4, 16px);
+}
+
+.eds-row {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3, 12px);
+  flex-wrap: wrap;
+}
+
+.eds-meta {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-tertiary);
+}
+
+.eds-doc-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: var(--space-4, 16px);
+}
+/* ================================================================
    EDS — Storybook preview chrome
    Styles applied INSIDE the story canvas (not the manager UI).
    Manager UI styling lives in manager.js via storybook/theming.
