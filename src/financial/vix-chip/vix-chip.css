@@ -1,0 +1,114 @@
+/* ================================================================
+   Component · VIX Chip
+   ================================================================ */
+
+.eds-vix {
+  --vix-fg: var(--text-primary);
+  --vix-bg: var(--bg-elevated);
+  --vix-border: var(--border-hover);
+  --vix-tag-bg: rgba(255, 255, 255, 0.06);
+  --vix-tag-fg: var(--text-tertiary);
+
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 4px 4px 4px 4px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  font-variant-numeric: tabular-nums;
+  background: var(--vix-bg);
+  border: 1px solid var(--vix-border);
+  border-radius: var(--radius-s, 4px);
+  color: var(--vix-fg);
+  white-space: nowrap;
+}
+
+.eds-vix__tag {
+  display: inline-flex;
+  align-items: center;
+  padding: 2px 6px;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  background: var(--vix-tag-bg);
+  color: var(--vix-tag-fg);
+  border-radius: 2px;
+}
+
+.eds-vix__value {
+  font-weight: 600;
+  font-size: 0.95em;
+}
+
+.eds-vix__label {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--vix-fg);
+  padding-right: 4px;
+}
+
+.eds-vix__delta {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 4px;
+  font-size: 11px;
+  font-weight: 500;
+  padding-right: 6px;
+}
+
+.eds-vix__delta--up   { color: var(--color-negative); }   /* VIX up = bad for risk-on */
+.eds-vix__delta--down { color: var(--color-positive); }   /* VIX down = good */
+.eds-vix__delta--flat { color: var(--text-tertiary); }
+
+.eds-vix__delta-pct {
+  font-size: 10px;
+  opacity: 0.85;
+}
+
+/* ── Sizes ───────────────────────────────────────────────── */
+
+.eds-vix--sm { font-size: 10.5px; gap: 6px; padding: 3px; }
+.eds-vix--md { font-size: 12px; }
+.eds-vix--lg { font-size: 14px; gap: 10px; padding: 6px 6px 6px 6px; }
+
+.eds-vix--lg .eds-vix__tag { font-size: 11px; padding: 3px 8px; }
+
+/* ── Band variants — all theme-aware via --color-* tokens ── */
+
+.eds-vix--calm {
+  --vix-bg:     var(--color-success-subtle);
+  --vix-border: var(--color-success-border);
+  --vix-tag-bg: var(--color-success-subtle);
+  --vix-tag-fg: var(--color-success);
+}
+
+.eds-vix--calm .eds-vix__label { color: var(--color-success); }
+
+.eds-vix--normal {
+  --vix-bg:     var(--bg-elevated);
+  --vix-border: var(--border-hover);
+  --vix-tag-bg: var(--bg-elevated);
+  --vix-tag-fg: var(--text-secondary);
+}
+
+.eds-vix--normal .eds-vix__label { color: var(--text-secondary); }
+
+.eds-vix--elevated {
+  --vix-bg:     var(--accent-08);
+  --vix-border: var(--accent-25);
+  --vix-tag-bg: var(--accent-15);
+  --vix-tag-fg: var(--accent);
+}
+
+.eds-vix--elevated .eds-vix__label { color: var(--accent); }
+
+.eds-vix--crisis {
+  --vix-bg:     var(--color-danger-subtle);
+  --vix-border: var(--color-danger-border);
+  --vix-tag-bg: var(--color-danger-subtle);
+  --vix-tag-fg: var(--color-danger);
+}
+
+.eds-vix--crisis .eds-vix__label { color: var(--color-danger); }

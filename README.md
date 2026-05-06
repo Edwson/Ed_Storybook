@@ -176,19 +176,22 @@ underscore-prefixed assets.
 
 ## Current status
 
-**v0.3 — 7 foundations + 7 primitives + 3 financial + 1 compliance + 1 pattern = 19 stories shipped.**
+**v0.5 — 7 foundations + 8 primitives + 3 components + 6 financial + 4 compliance + 2 patterns = 30 stories shipped.**
+
+The flagship demonstration is **[Patterns / Dashboard Grid](https://edwson.github.io/Ed_Storybook/?path=/docs/patterns-dashboard-grid--docs)** — ten components composed into a Bloomberg-class trading-desk surface in a single story.
+
 See [`ROADMAP.md`](./ROADMAP.md) for the migration plan covering all 149 components.
 
-| Section | v0.3 | Notes |
+| Section | v0.5 | Notes |
 | --- | --- | --- |
-| Foundations | 7 / 8 | Color · Typography · Spacing · Motion · WCAG · Elevation · **Icons** (24×24 stroke set, 36 icons). Iconography rules pending. |
-| Primitives | 7 / 12 | Button · Input · Select · Checkbox · Toggle · Badge · **Radio**. Slider · Chip · Avatar · Tag · IconButton pending. |
-| Components | 0 / 14 | All pending |
-| Financial | 3 / 25 | PnL Cell · **Regime Chip** · **Price Tick** shipped |
-| Compliance | 1 / 12 | Disclosure Banner shipped |
+| Foundations | 7 / 8 | Color · Typography · Spacing · Motion · WCAG · Elevation · Icons. Iconography rules pending. |
+| Primitives | 8 / 12 | Button · Input · Select · Checkbox · Toggle · Badge · Radio · Avatar. Slider · Chip · Tag · IconButton pending. |
+| Components | 3 / 14 | Card · Alert · Tooltip. Toast · Popover · Modal · Drawer · Accordion · Pagination · Breadcrumb · Tabs · Stepper · Empty State · Skeleton pending. |
+| Financial | **6 / 25** | PnL Cell · Regime Chip · Price Tick · **VIX Chip · Order Row · Position Row**. |
+| Compliance | **4 / 12** | Disclosure Banner · KYC Step · **FIX State Chip · Threshold Band**. |
 | AML | 0 / 10 | All pending |
 | B2B SaaS | 0 / 10 | All pending |
-| Patterns | 1 / 6 | Command Palette shipped |
+| Patterns | **2 / 6** | Command Palette · **Dashboard Grid (showpiece)**. |
 
 ---
 

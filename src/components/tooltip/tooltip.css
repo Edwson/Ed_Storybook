@@ -1,0 +1,114 @@
+/* ================================================================
+   Component · Tooltip (pure CSS)
+   ================================================================ */
+
+.eds-tt {
+  position: relative;
+  display: inline-block;
+  font-family: 'Inter', sans-serif;
+}
+
+.eds-tt__trigger {
+  display: inline-flex;
+  align-items: center;
+  cursor: help;
+  text-decoration: underline dotted var(--text-tertiary);
+  text-underline-offset: 3px;
+  outline: none;
+  border-radius: var(--radius-s, 4px);
+}
+
+.eds-tt__trigger:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.eds-tt__bubble {
+  position: absolute;
+  z-index: 100;
+  max-width: 280px;
+  width: max-content;
+  padding: 6px 10px;
+  font-size: 0.78rem;
+  line-height: 1.4;
+  /* --bg-tooltip + --tooltip-fg flip per theme: dark bubble on cream
+     surface in salt mode, light bubble on dark surface otherwise. */
+  color: var(--tooltip-fg);
+  background: var(--bg-tooltip);
+  border: 1px solid var(--border-hover);
+  border-radius: var(--radius-s, 4px);
+  box-shadow: var(--shadow-md);
+  pointer-events: none;
+  opacity: 0;
+  transform: scale(0.96) translateY(2px);
+  transform-origin: var(--tt-origin, bottom center);
+  transition:
+    opacity var(--duration-fast, 120ms) var(--ease, ease),
+    transform var(--duration-fast, 120ms) var(--ease, ease);
+}
+
+.eds-tt:hover .eds-tt__bubble,
+.eds-tt:focus-within .eds-tt__bubble {
+  opacity: 1;
+  transform: scale(1) translateY(0);
+}
+
+/* ── Placement ───────────────────────────────────────────── */
+
+.eds-tt--top .eds-tt__bubble {
+  --tt-origin: bottom center;
+  bottom: calc(100% + 6px);
+  left: 50%;
+  transform-origin: bottom center;
+  transform: translateX(-50%) scale(0.96) translateY(2px);
+}
+
+.eds-tt--top:hover .eds-tt__bubble,
+.eds-tt--top:focus-within .eds-tt__bubble {
+  transform: translateX(-50%) scale(1) translateY(0);
+}
+
+.eds-tt--bottom .eds-tt__bubble {
+  --tt-origin: top center;
+  top: calc(100% + 6px);
+  left: 50%;
+  transform-origin: top center;
+  transform: translateX(-50%) scale(0.96) translateY(-2px);
+}
+
+.eds-tt--bottom:hover .eds-tt__bubble,
+.eds-tt--bottom:focus-within .eds-tt__bubble {
+  transform: translateX(-50%) scale(1) translateY(0);
+}
+
+.eds-tt--right .eds-tt__bubble {
+  --tt-origin: left center;
+  left: calc(100% + 6px);
+  top: 50%;
+  transform-origin: left center;
+  transform: translateY(-50%) scale(0.96) translateX(-2px);
+}
+
+.eds-tt--right:hover .eds-tt__bubble,
+.eds-tt--right:focus-within .eds-tt__bubble {
+  transform: translateY(-50%) scale(1) translateX(0);
+}
+
+.eds-tt--left .eds-tt__bubble {
+  --tt-origin: right center;
+  right: calc(100% + 6px);
+  top: 50%;
+  transform-origin: right center;
+  transform: translateY(-50%) scale(0.96) translateX(2px);
+}
+
+.eds-tt--left:hover .eds-tt__bubble,
+.eds-tt--left:focus-within .eds-tt__bubble {
+  transform: translateY(-50%) scale(1) translateX(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .eds-tt__bubble {
+    transition: none !important;
+  }
+}

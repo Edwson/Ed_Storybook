@@ -12,6 +12,27 @@ import './tokens.css';
 import './fonts.css';
 import './storybook-brand.css';
 
+/**
+ * Force the data-theme attribute onto <html> for BOTH canvas and docs
+ * iframes. The default `withThemeByDataAttribute` decorator only sets
+ * the attribute on the per-story wrapper element, which means docs
+ * pages — which render multiple stories in one iframe — never get
+ * `data-theme` on the document root. That's why our token cascade
+ * (--bg-void, --text-primary, --color-positive, etc.) doesn't flip
+ * inside docs without this hook.
+ */
+const forceRootDataTheme = (storyFn, context) => {
+  const themeName = context.globals.theme || 'Institutional Dark';
+  const themeAttr = themeName === 'Salt Light' ? 'salt' : 'institutional';
+  if (typeof document !== 'undefined' && document.documentElement) {
+    document.documentElement.setAttribute('data-theme', themeAttr);
+    if (document.body) {
+      document.body.setAttribute('data-theme', themeAttr);
+    }
+  }
+  return storyFn();
+};
+
 /** @type { import('@storybook/html-vite').Preview } */
 const preview = {
   parameters: {
@@ -66,6 +87,10 @@ const preview = {
     },
   },
   decorators: [
+    /** Sets data-theme on the iframe root — runs before story render. */
+    forceRootDataTheme,
+
+    /** Built-in theme decorator: wraps the story in a data-theme div. */
     withThemeByDataAttribute({
       themes: {
         'Institutional Dark': 'institutional',
@@ -74,6 +99,7 @@ const preview = {
       defaultTheme: 'Institutional Dark',
       attributeName: 'data-theme',
     }),
+
     /**
      * Density mode decorator — toggles --density between 'comfortable'
      * (default) and 'compact' for institutional dense surfaces.

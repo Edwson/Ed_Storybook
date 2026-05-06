@@ -106,12 +106,12 @@
 /* ── Error ───────────────────────────────────────────────── */
 
 .eds-select--error .eds-select__control {
-  --select-border: rgba(232, 93, 93, 0.55);
-  box-shadow: 0 0 0 3px rgba(232, 93, 93, 0.15);
+  --select-border: var(--color-danger-border);
+  box-shadow: 0 0 0 3px var(--color-danger-subtle);
 }
 
 .eds-select--error .eds-select__helper {
-  color: #e85d5d;
+  color: var(--color-danger);
 }
 
 /* ── Disabled ────────────────────────────────────────────── */
@@ -125,21 +125,4 @@
   .eds-select__control {
     transition: none !important;
   }
-}
-
-/* ── Salt theme ──────────────────────────────────────────── */
-
-[data-theme='salt'] .eds-select__control {
-  background: var(--eds-bg-card);
-  border-color: var(--eds-border);
-}
-
-[data-theme='salt'] .eds-select__native,
-[data-theme='salt'] .eds-select__native option {
-  color: var(--eds-text-1);
-  background: var(--eds-bg-card);
-}
-
-[data-theme='salt'] .eds-select__label {
-  color: var(--eds-text-2);
 }

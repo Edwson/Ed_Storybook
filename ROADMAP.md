@@ -24,7 +24,7 @@ welcome MDX. See [`README.md`](./README.md).
 | ✅ | Icons (24×24 stroke set, 36 icons covering arrows / status / finance / compliance / UI) |
 | ⏳ | Iconography rules (when to use icon vs label) |
 
-## Phase 2 — Primitives (7 / 12 shipped)
+## Phase 2 — Primitives (8 / 12 shipped)
 
 | Status | Story | Source |
 | --- | --- | --- |
@@ -35,47 +35,45 @@ welcome MDX. See [`README.md`](./README.md).
 | ✅ | Toggle | `role="switch"`, optional state-bound on/off label |
 | ✅ | Badge | 6 variants × 3 appearances × 3 sizes, dot/glyph/uppercase |
 | ✅ | Radio | `<fieldset><legend>` group, vertical/horizontal, per-option helper |
+| ✅ | Avatar | image / initials / icon fallback × 3 sizes × status dot |
 | ⏳ | Slider / Range | extract from `design-system-showcase` |
 | ⏳ | Chip / Pill | extract |
-| ⏳ | Avatar | extract |
 | ⏳ | Tag | extract |
 | ⏳ | Icon Button | new |
 
-## Phase 3 — Components (0 / 14)
-
-All extracted from `design-system-showcase.html`:
-
-| Story |
-| --- |
-| Card |
-| Alert (semantic 4-variant) |
-| Toast |
-| Tooltip |
-| Popover |
-| Modal / Dialog |
-| Drawer |
-| Accordion |
-| Pagination |
-| Breadcrumb |
-| Tabs |
-| Stepper |
-| Empty State |
-| Skeleton / Loading |
-
-## Phase 4 — Financial (3 / 25)
+## Phase 3 — Components (3 / 14)
 
 | Status | Story | Notes |
 | --- | --- | --- |
-| ✅ | PnL Cell | new — direction-aware glyph + WCAG-pass colors |
+| ✅ | Card | universal surface · header / body / footer slots · hoverable + elevated variants |
+| ✅ | Alert | 4 semantic variants (info / success / warning / danger) · role=alert wired |
+| ✅ | Tooltip | pure-CSS · 4 placements · aria-describedby · no portal, no JS positioning |
+| ⏳ | Toast | extract |
+| ⏳ | Popover | extract |
+| ⏳ | Modal / Dialog | extract |
+| ⏳ | Drawer | extract |
+| ⏳ | Accordion | extract |
+| ⏳ | Pagination | extract |
+| ⏳ | Breadcrumb | extract |
+| ⏳ | Tabs | extract |
+| ⏳ | Stepper | extract |
+| ⏳ | Empty State | extract |
+| ⏳ | Skeleton / Loading | extract |
+
+## Phase 4 — Financial (6 / 25)
+
+| Status | Story | Notes |
+| --- | --- | --- |
+| ✅ | PnL Cell | direction-aware glyph + WCAG-pass colors |
 | ✅ | Price Tick | symbol + last + delta + sparkline; watchlist row primitive |
 | ✅ | Regime Chip | 5-state HMM classifier (crash/bear/neutral/bull/euphoria) + confidence bar |
-| ⏳ | Order Row (blotter row) | extract |
-| ⏳ | Position Row | extract |
+| ✅ | VIX Chip | 4-band volatility regime indicator + Δ vs prior close |
+| ✅ | Order Row | 11-col blotter row · FIX state · partial/filled/rejected variants · 17a-4 retention |
+| ✅ | Position Row | 9-col positions table row · long/short · reuses PnLCell |
 | ⏳ | Watchlist Row | extract |
 | ⏳ | Depth Bar | extract |
 | ⏳ | Heat Meter | extract |
 | ⏳ | Spark | extract |
-| ⏳ | VIX Chip | extract |
 | ⏳ | Yield Curve (mini) | extract |
 | ⏳ | Order Ticket | extract |
 | ⏳ | Trade History row | extract |
@@ -92,12 +90,14 @@ All extracted from `design-system-showcase.html`:
 | ⏳ | Bid/Ask spread chip | extract |
 | ⏳ | Currency Selector | extract |
 
-## Phase 5 — Compliance (1 / 12)
+## Phase 5 — Compliance (4 / 12)
 
 | Status | Story | Notes |
 | --- | --- | --- |
-| ✅ | Disclosure Banner | new — 3 severities |
-| ⏳ | KYC Step (progressive disclosure) | extract |
+| ✅ | Disclosure Banner | 3 severities (compliant / disclosure / blocked) |
+| ✅ | KYC Step | 4 statuses + regulatory citation slot |
+| ✅ | FIX State Chip | FIX 4.4 OrdStatus 6-state · SEC 17a-4 anchor |
+| ✅ | Threshold Band | 3-tier pre-trade escalation · MAS Notice 626 / FINRA 4210(g) anchors |
 | ⏳ | Threshold Band (3-tier) | extract — RG 268 |
 | ⏳ | FIX State Chip | extract — OrdStatus 4-state |
 | ⏳ | SAR Row | extract |
@@ -143,12 +143,12 @@ All from the B2B SaaS Platform section added 2026-04-19:
 | ARR Waterfall row |
 | SSO / SCIM Admin row |
 
-## Phase 8 — Patterns (1 / 6)
+## Phase 8 — Patterns (2 / 6)
 
 | Status | Story | Source |
 | --- | --- | --- |
-| ✅ | Command Palette | new — TradeX_Platform v0.3 model |
-| ⏳ | Dashboard Grid (KPI tiles) | extract |
+| ✅ | Command Palette | TradeX_Platform v0.3 model |
+| ✅ | **Dashboard Grid** | Bloomberg-class composition · 10 components in one surface · the showpiece |
 | ⏳ | Kanban Board | extract |
 | ⏳ | Data Table (sortable, filterable) | extract |
 | ⏳ | Form Layout (multi-step) | extract |

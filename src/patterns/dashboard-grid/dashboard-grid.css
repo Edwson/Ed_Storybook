@@ -1,0 +1,168 @@
+/* ================================================================
+   Pattern · Dashboard Grid
+   Trading-desk surface composing every financial primitive.
+   ================================================================ */
+
+.eds-dash {
+  display: grid;
+  gap: var(--space-4, 16px);
+  padding: var(--space-5, 24px);
+  background: var(--bg-deep);
+  font-family: 'Inter', sans-serif;
+  color: var(--text-primary);
+  min-height: 100vh;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+/* ── Header strip ─────────────────────────────────────────── */
+
+.eds-dash__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-4, 16px);
+  padding: 0 var(--space-2, 8px);
+  flex-wrap: wrap;
+}
+
+.eds-dash__head-eyebrow {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-tertiary);
+}
+
+.eds-dash__head-title {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-weight: 400;
+  font-size: 1.5rem;
+  letter-spacing: -0.01em;
+  color: var(--text-primary);
+  margin-top: 4px;
+}
+
+.eds-dash__head-right {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-3, 12px);
+  flex-wrap: wrap;
+}
+
+/* ── KPI tiles ────────────────────────────────────────────── */
+
+.eds-dash__kpis {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: var(--space-3, 12px);
+}
+
+.eds-dash__kpi {
+  display: grid;
+  gap: var(--space-3, 12px);
+  padding: var(--space-4, 16px);
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-l, 12px);
+}
+
+.eds-dash__kpi-eyebrow {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10.5px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-tertiary);
+}
+
+.eds-dash__kpi-meta {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10.5px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-tertiary);
+  border-top: 1px solid var(--border);
+  padding-top: var(--space-2, 8px);
+}
+
+/* ── Panel (blotter / positions / footer container) ──────── */
+
+.eds-dash__panel {
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-l, 12px);
+  padding: var(--space-4, 16px);
+  display: grid;
+  gap: 0;
+  min-width: 0;
+  overflow-x: auto;
+}
+
+.eds-dash__panel-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--space-3, 12px);
+  margin-bottom: var(--space-3, 12px);
+  flex-wrap: wrap;
+}
+
+.eds-dash__panel-title {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-weight: 400;
+  font-size: 1.15rem;
+  color: var(--text-primary);
+  letter-spacing: -0.005em;
+}
+
+.eds-dash__panel-meta {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10.5px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-tertiary);
+}
+
+.eds-dash__col-head {
+  display: grid;
+  gap: var(--space-3, 12px);
+  padding: 0 var(--space-4, 16px) var(--space-2, 8px);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10.5px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-tertiary);
+}
+
+/* The OrderRow / PositionRow components stack against each other
+   without margin gaps. The panel wraps them. */
+
+.eds-dash__panel .eds-orow,
+.eds-dash__panel .eds-prow {
+  background: var(--bg-deep);
+}
+
+.eds-dash__panel .eds-orow + .eds-orow,
+.eds-dash__panel .eds-prow + .eds-prow {
+  margin-top: -1px;
+}
+
+/* ── Disclaimer ──────────────────────────────────────────── */
+
+.eds-dash__disclaimer {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10.5px;
+  letter-spacing: 0.04em;
+  color: var(--text-muted);
+  text-align: center;
+  padding: var(--space-3, 12px) 0;
+  line-height: 1.6;
+}
+
+.eds-dash__disclaimer code {
+  background: var(--bg-elevated);
+  padding: 1px 4px;
+  border-radius: 2px;
+  color: var(--text-tertiary);
+  font-size: 10px;
+}

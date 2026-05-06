@@ -82,13 +82,3 @@
   align-items: flex-start;
   gap: 4px;
 }
-
-/* ── Salt theme ──────────────────────────────────────────── */
-
-[data-theme='salt'] .eds-pnl__value {
-  color: var(--eds-text-1);
-}
-
-[data-theme='salt'] .eds-pnl--neutral .eds-pnl__delta {
-  color: var(--eds-text-3);
-}

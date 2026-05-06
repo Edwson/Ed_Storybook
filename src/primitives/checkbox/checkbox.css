@@ -105,18 +105,3 @@
     transition: none !important;
   }
 }
-
-/* ── Salt theme ──────────────────────────────────────────── */
-
-[data-theme='salt'] .eds-checkbox__indicator {
-  background: var(--eds-bg-card);
-  border-color: var(--eds-border-strong);
-}
-
-[data-theme='salt'] .eds-checkbox__input:checked ~ .eds-checkbox__indicator {
-  color: #ffffff;
-}
-
-[data-theme='salt'] .eds-checkbox__label {
-  color: var(--eds-text-1);
-}

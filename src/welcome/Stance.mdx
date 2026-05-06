@@ -1,0 +1,110 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Welcome/Editorial stance" />
+
+# Editorial stance
+
+> What this design system is *not* — and why those non-goals make the rest of it readable.
+
+Most "design system showcases" are aspirational artefacts: every screen
+is the highlight reel, every component is a theoretical happy path,
+every claim is unverified. This one is structured to fail those
+heuristics on purpose.
+
+---
+
+## What this is not
+
+### Not a generic UI kit
+
+If a component is here, it has props, states, edge cases, and at least
+one use-case story showing real composition. The first-glance test for
+adding a new component is *can it carry a regulatory anchor or
+institutional-density pattern?* If the answer is "not really," it
+doesn't get added.
+
+### Not a Bloomberg / Refinitiv / Tradeweb clone
+
+The vocabulary overlaps because the domain overlaps. The decisions
+don't. Naming an incumbent product as a comparison anchor invites the
+reader to measure the work against the incumbent — that's a fight a
+sub-twenty-component portfolio loses by definition. The user-need gap
+is articulated directly instead.
+
+### Not a marketing artefact
+
+The marketing surface for the design system lives at
+[edwson.com/design-system-showcase.html](https://edwson.com/design-system-showcase.html).
+This Storybook is the working library — the source of truth that ships,
+not the screenshot of what it might look like one day.
+
+### Not a single-employer dependency
+
+Four years at ACY Securities is a footnote, not a hero leverage. ACY
+appears in field-note citations and case-study post-scripts, not in
+component descriptions. The components encode regulatory and
+institutional-finance vocabulary that generalises across desks; the
+design system is shippable in a JPM / GS / BlackRock context without
+needing to translate ACY-specific assumptions.
+
+### Not an AI-generated artefact
+
+There are no straw-man framings ("Most X are Y, but I do Z"), no triple
+adjective stacks, no manifesto closers ("where X is the signal"). Every
+piece of copy is written to be quoted in a regulatory review or a senior
+1:1 — the voice has to survive both contexts.
+
+---
+
+## What gets a component shipped here
+
+A new component reaches `main` when:
+
+1. **Render function returns a working DOM node or HTML string.**
+   No JSX, no React, no build-step magic. `node --check` passes.
+2. **Scoped CSS in `.eds-` BEM with token references only.** No raw
+   hex, no hardcoded pixel values outside foundation stories.
+3. **At least one use-case story** showing real composition with other
+   library components. "Variants of itself" is not a use case.
+4. **`aria-*` wired** correctly: `role`, `aria-label`, `aria-describedby`
+   for any interactive surface. Pseudo-classes `:focus-visible` styled.
+5. **`prefers-reduced-motion: reduce`** stops every keyframe.
+6. **WCAG 2.1 AA** on every text-on-background pair the component
+   produces. Direction never colour-only — pair with arrow + sign + label.
+7. **A line in `CHANGELOG.md`** summarising what the component
+   encodes and why it earns its weight in the bundle.
+
+---
+
+## What never gets shipped
+
+- Components that are pure visual exercises with no encoded
+  workflow.
+- Animated price values, animated P&L, animated risk gauges. Live
+  data updates instantly. Animating a number is a perceived-latency
+  cost professionals notice.
+- Hardcoded brand-product names (Bloomberg, Refinitiv, Eikon, Capital IQ,
+  Tradeweb, FactSet, Reuters) inside component descriptions or stories.
+  Vocabulary, yes; vendor positioning, no.
+- A second accent colour. Gold (`--accent: #c9a959`) is the only
+  accent. A second accent is almost always a symptom of unclear
+  hierarchy.
+- `!important` outside of `prefers-reduced-motion: reduce` blocks.
+
+---
+
+## What this is
+
+A working component library that demonstrates Senior Product Designer
+craft for institutional finance — built so any reviewer (HR, hiring
+manager, peer designer, engineer) can look at one component, read its
+docs page, hover its variants, and judge the system in 60 seconds.
+
+The yard-stick:
+> Could a JPM / GS / BlackRock / Stripe / Mercury / Anthropic Senior PD
+> hire conversation start from this Storybook? Yes — and it should
+> shorten that conversation, not lengthen it.
+
+---
+
+*Maintained by Ed Chen · ed@edwson.com · [edwson.com](https://edwson.com)*

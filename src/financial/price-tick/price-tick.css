@@ -67,8 +67,8 @@
   display: block;
 }
 
-.eds-tick--up   .eds-tick__spark { color: var(--color-positive, #16825d); }
-.eds-tick--down .eds-tick__spark { color: var(--color-negative, #c5303f); }
+.eds-tick--up   .eds-tick__spark { color: var(--color-positive, var(--color-positive)); }
+.eds-tick--down .eds-tick__spark { color: var(--color-negative, var(--color-negative)); }
 .eds-tick--flat .eds-tick__spark { color: var(--text-tertiary); }
 
 /* ── Last price (centred-leaning right) ──────────────────── */
@@ -93,8 +93,8 @@
 
 .eds-tick__glyph { font-size: 0.85em; }
 
-.eds-tick--up   .eds-tick__delta { color: var(--color-positive, #16825d); }
-.eds-tick--down .eds-tick__delta { color: var(--color-negative, #c5303f); }
+.eds-tick--up   .eds-tick__delta { color: var(--color-positive, var(--color-positive)); }
+.eds-tick--down .eds-tick__delta { color: var(--color-negative, var(--color-negative)); }
 .eds-tick--flat .eds-tick__delta { color: var(--text-tertiary); }
 
 .eds-tick__delta-pct { opacity: 0.85; }
@@ -117,19 +117,3 @@
 @media (prefers-reduced-motion: reduce) {
   .eds-tick--interactive { transition: none !important; }
 }
-
-/* ── Salt theme ──────────────────────────────────────────── */
-
-[data-theme='salt'] .eds-tick {
-  background: var(--eds-bg-card);
-  border-color: var(--eds-border);
-}
-
-[data-theme='salt'] .eds-tick__symbol,
-[data-theme='salt'] .eds-tick__last { color: var(--eds-text-1); }
-
-[data-theme='salt'] .eds-tick--up   .eds-tick__delta,
-[data-theme='salt'] .eds-tick--up   .eds-tick__spark { color: #1a7d56; }
-
-[data-theme='salt'] .eds-tick--down .eds-tick__delta,
-[data-theme='salt'] .eds-tick--down .eds-tick__spark { color: #b3293a; }

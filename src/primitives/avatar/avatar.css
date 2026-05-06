@@ -1,0 +1,94 @@
+/* ================================================================
+   Component · Avatar
+   ================================================================ */
+
+.eds-avatar {
+  --av-size: 32px;
+  --av-fs: 0.78rem;
+
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--av-size);
+  height: var(--av-size);
+  background: var(--accent-15);
+  color: var(--accent);
+  font-family: 'Inter', sans-serif;
+  font-size: var(--av-fs);
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  overflow: hidden;
+  flex: none;
+  user-select: none;
+}
+
+.eds-avatar--circle {
+  border-radius: 50%;
+}
+
+.eds-avatar--squared {
+  border-radius: var(--radius-s, 4px);
+}
+
+.eds-avatar__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.eds-avatar__initials {
+  line-height: 1;
+}
+
+.eds-avatar__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 60%;
+  height: 60%;
+  color: currentColor;
+}
+
+.eds-avatar__icon svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+/* ── Sizes ───────────────────────────────────────────────── */
+
+.eds-avatar--sm {
+  --av-size: 24px;
+  --av-fs: 0.62rem;
+}
+
+.eds-avatar--md {
+  --av-size: 32px;
+  --av-fs: 0.78rem;
+}
+
+.eds-avatar--lg {
+  --av-size: 48px;
+  --av-fs: 1rem;
+}
+
+/* ── Status dot ──────────────────────────────────────────── */
+
+.eds-avatar__status {
+  position: absolute;
+  bottom: -1px;
+  right: -1px;
+  width: 30%;
+  min-width: 8px;
+  height: 30%;
+  min-height: 8px;
+  border-radius: 50%;
+  border: 2px solid var(--bg-void);
+}
+
+.eds-avatar__status--success { background: var(--color-success); }
+.eds-avatar__status--warn    { background: #c9a959; }
+.eds-avatar__status--danger  { background: var(--color-danger); }
+.eds-avatar__status--neutral { background: var(--text-tertiary); }

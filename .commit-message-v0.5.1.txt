@@ -1,0 +1,20 @@
+v0.5.1 — Theme fix on docs + 11 new components
+
+Theme switching now works on autodocs pages too:
+- forceRootDataTheme decorator sets data-theme on iframe root
+  (covers both canvas + docs views — Storybook's built-in
+  decorator only set it on the per-story wrapper, so docs
+  pages never flipped before)
+- Comprehensive .sbdocs override block in storybook-brand.css
+  covers TOC, error display, tables, links, code, docblocks
+
+11 new components shipped (v0.4 + v0.5 work):
+- Components: Card, Alert, Tooltip
+- Primitives: Avatar
+- Compliance: KYC Step, FIX State Chip, Threshold Band
+- Financial: Order Row, Position Row, VIX Chip
+- Patterns: Dashboard Grid (showpiece composition)
+- Editorial: Stance.mdx + Welcome.mdx polish
+
+All component CSS migrated to theme-aware semantic tokens.
+See CHANGELOG.md for full v0.5.0 + v0.5.1 details.

@@ -93,9 +93,9 @@
 /* ── Regime variants ─────────────────────────────────────── */
 
 .eds-regime--crash {
-  --regime-color: #e85d5d;
-  --regime-bg: rgba(232, 93, 93, 0.10);
-  --regime-border: rgba(232, 93, 93, 0.30);
+  --regime-color: var(--color-danger);
+  --regime-bg: var(--color-danger-subtle);
+  --regime-border: var(--color-danger-border);
 }
 
 .eds-regime--bear {
@@ -111,9 +111,9 @@
 }
 
 .eds-regime--bull {
-  --regime-color: #52b277;
-  --regime-bg: rgba(82, 178, 119, 0.10);
-  --regime-border: rgba(82, 178, 119, 0.30);
+  --regime-color: var(--color-success);
+  --regime-bg: var(--color-success-subtle);
+  --regime-border: var(--color-success-border);
 }
 
 .eds-regime--euphoria {

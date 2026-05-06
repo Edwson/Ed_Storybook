@@ -1,0 +1,176 @@
+/* ================================================================
+   Component · Order Row (institutional blotter row)
+   ================================================================ */
+
+.eds-orow {
+  --orow-h: 36px;
+
+  display: grid;
+  grid-template-columns:
+    80px   /* time */
+    60px   /* id */
+    80px   /* symbol */
+    74px   /* side (glyph + label) */
+    52px   /* type */
+    72px   /* qty */
+    74px   /* limit */
+    74px   /* stop */
+    50px   /* tif */
+    116px  /* status */
+    1fr;   /* fill */
+  align-items: center;
+  gap: var(--space-3, 12px);
+  height: var(--orow-h);
+  padding: 0 var(--space-4, 16px);
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-s, 4px);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  font-variant-numeric: tabular-nums;
+  color: var(--text-primary);
+  text-align: left;
+  width: 100%;
+}
+
+.eds-orow + .eds-orow {
+  margin-top: -1px;
+  border-top-color: transparent;
+  border-radius: 0;
+}
+
+.eds-orow:first-child {
+  border-radius: var(--radius-s, 4px) var(--radius-s, 4px) 0 0;
+}
+
+.eds-orow:last-child {
+  border-radius: 0 0 var(--radius-s, 4px) var(--radius-s, 4px);
+}
+
+.eds-orow:only-child {
+  border-radius: var(--radius-s, 4px);
+}
+
+.eds-orow--interactive {
+  cursor: pointer;
+  transition: background var(--duration-fast, 120ms) var(--ease, ease);
+}
+
+.eds-orow--interactive:hover {
+  background: var(--bg-elevated);
+}
+
+.eds-orow--interactive:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: -2px;
+  position: relative;
+  z-index: 2;
+}
+
+/* ── Cells ────────────────────────────────────────────────── */
+
+.eds-orow__time,
+.eds-orow__id {
+  color: var(--text-tertiary);
+  font-size: 11px;
+}
+
+.eds-orow__sym {
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
+.eds-orow__side {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  font-size: 11px;
+}
+
+.eds-orow__glyph {
+  font-size: 0.85em;
+}
+
+.eds-orow--buy .eds-orow__side  { color: var(--color-positive); }
+.eds-orow--sell .eds-orow__side { color: var(--color-negative); }
+
+.eds-orow__type {
+  color: var(--text-tertiary);
+  font-size: 11px;
+  letter-spacing: 0.04em;
+}
+
+.eds-orow__qty {
+  text-align: right;
+  font-weight: 500;
+}
+
+.eds-orow__limit,
+.eds-orow__stop {
+  text-align: right;
+  color: var(--text-secondary);
+}
+
+.eds-orow__tif {
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  color: var(--text-tertiary);
+  text-transform: uppercase;
+}
+
+.eds-orow__fill {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2, 8px);
+  font-size: 11px;
+  color: var(--text-secondary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.eds-orow__fill-num {
+  font-weight: 500;
+  color: var(--text-primary);
+}
+
+.eds-orow__fill-pct {
+  font-size: 10px;
+  letter-spacing: 0.06em;
+  color: var(--text-tertiary);
+  padding: 1px 5px;
+  background: var(--bg-elevated);
+  border-radius: 2px;
+}
+
+.eds-orow__muted {
+  color: var(--text-tertiary);
+  font-style: italic;
+  font-size: 10.5px;
+}
+
+.eds-orow__reject {
+  color: var(--color-danger);
+  font-size: 10.5px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* ── Status row tints ────────────────────────────────────── */
+
+.eds-orow--filled {
+  background: linear-gradient(to right, var(--color-success-subtle) 0%, transparent 30%);
+}
+
+.eds-orow--rejected {
+  background: linear-gradient(to right, var(--color-danger-subtle) 0%, transparent 30%);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .eds-orow--interactive {
+    transition: none !important;
+  }
+}

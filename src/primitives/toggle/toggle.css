@@ -118,22 +118,3 @@
     transition: none !important;
   }
 }
-
-/* ── Salt theme ──────────────────────────────────────────── */
-
-[data-theme='salt'] .eds-toggle__track {
-  background: rgba(66, 36, 12, 0.08);
-  border-color: var(--eds-border-strong);
-}
-
-[data-theme='salt'] .eds-toggle__thumb {
-  background: var(--eds-text-2);
-}
-
-[data-theme='salt'] .eds-toggle__input:checked ~ .eds-toggle__track .eds-toggle__thumb {
-  background: #ffffff;
-}
-
-[data-theme='salt'] .eds-toggle__label {
-  color: var(--eds-text-1);
-}

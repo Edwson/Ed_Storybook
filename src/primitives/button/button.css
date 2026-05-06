@@ -63,9 +63,11 @@
   display: block;
 }
 
+/* ── Variants ────────────────────────────────────────────── */
+
 .eds-btn--primary {
   background: var(--accent);
-  color: var(--accent-fg);
+  color: var(--accent-fg);     /* dark fg on gold; passes 6.5:1 in both themes */
   border-color: var(--accent);
 }
 
@@ -127,6 +129,8 @@
   text-underline-offset: 2px;
 }
 
+/* ── Sizes ───────────────────────────────────────────────── */
+
 .eds-btn--sm {
   --btn-h: 28px;
   --btn-px: var(--space-3, 12px);
@@ -146,9 +150,13 @@
   --btn-fs: 1rem;
 }
 
+/* ── Block (full-width) ──────────────────────────────────── */
+
 .eds-btn--block {
   width: 100%;
 }
+
+/* ── Loading state ───────────────────────────────────────── */
 
 .eds-btn--loading .eds-btn__label {
   visibility: hidden;
@@ -167,6 +175,8 @@
 @keyframes eds-btn-spin {
   to { transform: rotate(360deg); }
 }
+
+/* ── Reduced motion ──────────────────────────────────────── */
 
 @media (prefers-reduced-motion: reduce) {
   .eds-btn,

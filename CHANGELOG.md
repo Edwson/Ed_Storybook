@@ -2,6 +2,63 @@
 
 All notable changes to the Storybook component library.
 
+## v0.5.1 — 2026-05-06 · Theme switching · comprehensive docs override + root data-theme
+
+Patch release fixing the residual dark-theme black-text bug reported on the deployed site. The keystone token + button fix in v0.5.0 fixed canvas stories, but **docs (autodocs) pages** were still rendering Storybook's internal classes with light-mode-only colours: TOC links `rgb(46,52,56)` invisible on dark, error displays black-on-dark, default `a/strong/td` falling back to Storybook defaults.
+
+**Root cause**:
+1. The `withThemeByDataAttribute` decorator only applies `data-theme` to the per-story wrapper element. Docs iframes — which compose multiple stories — never got `data-theme` on `<html>`, so the token cascade didn't flip.
+2. Storybook's autodocs internal CSS (`.sbdocs *`, `.toc-link`, `.docblock-*`, `.sb-errordisplay`) ships with hard-coded light-mode colours that beat our `.sbdocs-wrapper` override on specificity for nested elements.
+
+**Fix**:
+1. **`.storybook/preview.js`** — added a `forceRootDataTheme` decorator that runs before every render and explicitly sets `document.documentElement.setAttribute('data-theme', themeAttr)`. Works for both canvas + docs iframes.
+2. **`.storybook/storybook-brand.css`** — comprehensive Storybook autodocs override block: typography (`.sbdocs h1-h6 / p / li / strong / em`), links (`.sbdocs a` → accent), code (`.sbdocs code / pre` → mono on bg-elevated), tables (`.sbdocs table / th / td` → surface tinted), TOC rail (`.toc-link` → text-tertiary, `.is-active-link` → accent), docs blocks (`.docblock-source / -argstable / -arginfo`), error display (`.sb-errordisplay *` → text-primary on bg-void), tab list (`button[role=tab]`), and form chrome inside docs.
+
+Now every text element inside the docs iframe inherits a token-flippable colour, and the data-theme attribute reaches `<html>` so all `var(--*)` references resolve correctly per active theme.
+
+---
+
+## v0.5.0 — 2026-05-06 · Institutional financial depth + showpiece Pattern
+
+This batch was driven by a single criterion: **what does a Senior PD at a top-tier fintech (JPM / GS / Bloomberg) want to see in 60 seconds?** Six components + one showpiece pattern, all encoding real institutional workflows with regulatory citations.
+
+**Patterns** (1 → 2 / 6) — *the showpiece*
+- **Dashboard Grid** — Bloomberg-class trading-desk surface composing every financial primitive in the library: 4 KPI tiles (Card + PnLCell), Regime + VIX header strip (RegimeChip + VixChip), 8-row execution blotter (OrderRow + FixStateChip), 6-row positions table (PositionRow + PnLCell), pre-trade compliance footer (ThresholdBand). Ten distinct components, all referenced from their shipped source — change `--accent` and the entire dashboard re-skins. **First-glance test for the system.**
+
+**Financial** (3 → 6 / 25)
+- **Order Row** — 11-column institutional blotter row at fixed-px widths. Tabular-nums alignment across rows. Side colour paired with arrow + uppercase label. Five fill variants (working / pending-new / partial / filled / canceled / rejected) reuse FixStateChip. SEC Rule 17a-4 retention + FINRA OATS hooks called out in docs.
+- **Position Row** — 9-column PORT-style positions table row. Long / short with side glyph (L / S). Reuses PnLCell at sm size for unrealized + total. Institutional money formatter (`$5.0M`, `$340K`, `$2.10`) so every row fits the same column width regardless of magnitude.
+- **VIX Chip** — CBOE volatility regime indicator with 4 bands (calm < 15 / normal 15-20 / elevated 20-30 / crisis ≥ 30). VIX-up colours red (vol increase = bad for risk-on); VIX-down colours green. FINRA 4210(g) margin escalation context surfaced in tooltip on crisis-band.
+
+**Compliance** (2 → 4 / 12)
+- **FIX State Chip** — FIX 4.4 OrdStatus indicator (tag 39) with all 6 single-broker states (pending-new A / new 0 / partial 1 / filled 2 / canceled 4 / rejected 8). Code + label pairing. SEC Rule 17a-4 retention + FINRA OATS context.
+- **Threshold Band** — pre-trade 3-tier escalation indicator. Maps a notional onto a jurisdictional threshold ladder (compliant / disclosure-required / blocked). Both threshold ticks visible on the bar so operators see *how close* they are to next escalation, not just current tier. MAS Notice 626 §8.3 / FINRA 4210(g) / 31 CFR 1010.311 anchors.
+
+**Welcome / Editorial polish**
+- Welcome MDX rewritten with sharper institutional positioning, status table, regulatory anchor index, and direct link to Dashboard Grid showpiece.
+- New "Editorial stance" page articulates discipline: what gets shipped, what never gets shipped, the 60-second hire-conversation yard-stick.
+
+**Total**: 30 stories shipped (7 foundations + 8 primitives + 3 components + 6 financial + 4 compliance + 2 patterns).
+
+---
+
+## v0.4.0 — 2026-05-06 · First Components/* batch + KYC Step + Avatar
+
+**Components** (0 → 3 / 14)
+- Card — universal surface primitive. Header (eyebrow + title) / body (HTML) / footer meta slots, all optional. `hoverable` lifts on hover; `elevated` switches from border to shadow. Auto-renders as `<a>` when `href` is set, `<button>` when `onClick` is set, `<div>` otherwise.
+- Alert — 4 semantic variants (info / success / warning / danger) for generic notices. `role="alert"` + `aria-live="assertive"` on `danger`; `role="status"` + `aria-live="polite"` on the others. Optional dismiss button + action button. Distinct from Disclosure Banner (regulatory / jurisdictional).
+- Tooltip — pure-CSS hover affordance with 4 placements (top / right / bottom / left). `aria-describedby` wires bubble to trigger; `tabindex=0` on trigger means keyboard users get the same reveal as mouse. No portal, no JS positioning library — works before Storybook hydration.
+
+**Primitives** (7 → 8 / 12)
+- Avatar — image / initials / icon fallback in priority order. 3 sizes (sm / md / lg). Circle (default) or squared (for system / org avatars). Optional status dot in bottom-right (4 colours: success / warn / danger / neutral). `role="img"` + `aria-label="<name>"` so screen readers announce identity.
+
+**Compliance** (1 → 2 / 12)
+- KYC Step — single step in a multi-step KYC / EDD flow. 4 statuses (pending / active / complete / blocked) drive bar colour + numeral glyph (✓ on complete, ! on blocked). Regulatory citation slot (e.g., `31 CFR 1010.230 · CIP`). Mirrors the pattern from the "Why KYC Drop-Off Spikes at EDD" field note that lifted EDD completion 35% → 70%.
+
+**Total**: 24 stories shipped (7 foundations + 8 primitives + 3 components + 3 financial + 2 compliance + 1 pattern).
+
+---
+
 ## v0.3.0 — 2026-05-06 · Icon set + Radio + 2 financial primitives
 
 **Foundations** (6 → 7 / 8)

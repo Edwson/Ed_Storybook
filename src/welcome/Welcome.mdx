@@ -4,64 +4,106 @@ import { Meta } from '@storybook/addon-docs/blocks';
 
 # Edwson Design System
 
-> Institutional-finance component library. Built for surfaces that get audited.
+> A working institutional-finance component library. Built for surfaces that get audited.
 
-This is the **working component library** behind Ed Chen's portfolio. The
-[design-system-showcase](https://edwson.com/design-system-showcase.html) page is
-the marketing surface; this Storybook is the source of truth — every component
-ships with props, states, controls, accessibility checks, and a documentation
-page that survives a third-engineering-team rotation.
+This is the source of truth behind the case studies on
+[edwson.com](https://edwson.com). Every component shipped here has props,
+states, controls, accessibility checks, and a docs page that survives a
+third-engineering-team rotation.
 
-## What this is
+The flagship demonstration is **[Patterns / Dashboard Grid](?path=/docs/patterns-dashboard-grid--docs)** —
+ten components composed into a Bloomberg-class trading-desk surface. If
+you have a minute, start there.
 
-- A **vanilla-JS / HTML-first** component library — no React, no JSX, no
-  framework lock-in. Each component exports a render function that returns a
-  string of HTML or a DOM node.
-- **Token-driven**: all color, spacing, type, motion values come from
-  [`/css/tokens.css`](../../css/tokens.css) — the same file the rest of the
-  portfolio uses.
-- **Two themes** wired via the toolbar: `Institutional Dark` (default) and
-  `Salt Light` (Xanthos / Christie's / Double-Blind cream surfaces).
-- **Two density modes**: `Comfortable` and `Compact`.
-- **WCAG 2.1 AA** as the floor — the a11y addon runs on every story.
+---
 
-## What this is not
+## What's covered
 
-- Not a Bloomberg / Refinitiv / Tradeweb clone. The vocabulary overlaps because
-  the domain overlaps; the decisions don't.
-- Not a marketing artifact. If a component is here, it has props, states, and
-  edge cases. If it doesn't, it's not ready to ship.
-- Not a generic UI kit. Most components encode regulatory or institutional
-  posture (FINRA / MiFID II / ASIC RG 268 / FATF / SEC 17a-4) — read the docs
-  page on each component for the specific anchor.
+| Domain | Status | Notes |
+| --- | --- | --- |
+| Foundations | 7 / 8 | Color · Typography · Spacing · Motion · WCAG · Elevation · Icons (36-glyph stroke set). Iconography rules pending. |
+| Primitives | 8 / 12 | Button · Input · Select · Checkbox · Radio · Toggle · Badge · Avatar. |
+| Components | 3 / 14 | Card · Alert · Tooltip. |
+| **Financial** | **6 / 25** | **PnL Cell · Price Tick · Regime Chip · VIX Chip · Order Row · Position Row.** This is where institutional craft lives. |
+| **Compliance** | **4 / 12** | **Disclosure Banner · KYC Step · FIX State Chip · Threshold Band.** Each component cites the regulation it satisfies. |
+| Patterns | 2 / 6 | Command Palette · **Dashboard Grid (showpiece)**. |
 
-## How it's organized
+**29 stories shipped** as of the most recent build. Roadmap:
+[`ROADMAP.md`](https://github.com/Edwson/Ed_Storybook/blob/main/ROADMAP.md) ·
+[`CHANGELOG.md`](https://github.com/Edwson/Ed_Storybook/blob/main/CHANGELOG.md).
 
-| Section | Scope |
-| --- | --- |
-| **Foundations** | Color, typography, spacing, radius, motion, elevation, icons, WCAG contrast ladder |
-| **Primitives** | Button, input, select, checkbox, radio, toggle, slider, badge, chip, avatar, tag |
-| **Components** | Card, alert, tooltip, accordion, modal, pagination, breadcrumb, tabs |
-| **Financial** | PnL cell, price tick, depth bar, regime chip, VIX chip, yield curve, order ticket |
-| **Compliance** | Disclosure banner, KYC step, threshold band, FIX state chip, SAR row |
-| **AML** | Sanctions screen, PEP monitor, risk score, UBO graph, monitoring queue |
-| **B2B SaaS** | CLM kanban, pricing tier card, health score, provisioning wizard, SSO admin |
-| **Patterns** | Command palette, dashboard grid, kanban, data table, form layout |
+---
+
+## Conventions you'll see everywhere
+
+- **Vanilla JS / HTML-first.** No React, no JSX, no framework lock-in. Each
+  component exports a render function that returns a string of HTML or a
+  DOM node.
+- **Token-driven.** Every colour, spacing, type, motion, and elevation
+  value is a CSS custom property. A token change cascades into every
+  consumer.
+- **BEM with `.eds-` namespace.** No CSS-in-JS; no utility-class soup.
+  `.eds-btn`, `.eds-orow__sym`, `.eds-tband--blocked`.
+- **Tabular-nums on every numeric cell.** Dot positions and percent
+  signs align across rows even when integer widths differ.
+- **Direction is never colour-only.** Up / down / blocked / cleared
+  always pair colour with arrow + sign + label, so deuteranopia users
+  parse the system as fast as anyone else.
+- **WCAG 2.1 AA is the floor.** The a11y addon runs on every story.
+- **Live data does not animate.** Price ticks update instantly; the
+  perceived-latency cost of animating a number is real.
+- **Two themes** — Institutional Dark (default) + Salt Light (Xanthos /
+  Christie's / cream surfaces). Toggle from the toolbar.
+- **Two density modes** — Comfortable + Compact for institutional dense
+  surfaces. Toggle from the toolbar.
+
+---
+
+## Regulatory anchors visible in the components
+
+This is not a generic UI kit. Where a component encodes a regulated
+workflow, the citation is in the docs page:
+
+- **FIX State Chip** — FIX 4.4 OrdStatus (tag 39) · SEC Rule 17a-4
+- **Order Row** — SEC Rule 17a-4 retention · FINRA OATS reporting hooks
+- **VIX Chip** — CBOE VIX bands · FINRA 4210(g) margin escalation
+- **Threshold Band** — MAS Notice 626 §8.3 · FINRA 4210(g) · 31 CFR 1010.311
+- **Disclosure Banner** — ASIC RG 268 · MAS Notice 626 · MiFID II Art 27 · SEC Reg NMS Rule 611
+- **KYC Step** — 31 CFR 1010.230 · FATF Rec 10 + 12 · MAS Notice 626 §8 · FCA SYSC 6.3
+- **Command Palette** — FINRA 2111 suitability · MiFID II Art 24(4) · SEC 15c3-3 (referenced in shortcut commands)
+
+---
+
+## Architecture
+
+```
+storybook-next/
+├── .storybook/        ← config, theme decorators, brand chrome
+├── src/
+│   ├── welcome/
+│   ├── foundations/   ← color · typography · spacing · motion · wcag · elevation · icons
+│   ├── primitives/    ← button · input · select · checkbox · radio · toggle · badge · avatar
+│   ├── components/    ← card · alert · tooltip · …
+│   ├── financial/     ← pnl-cell · price-tick · regime-chip · vix-chip · order-row · position-row · …
+│   ├── compliance/    ← disclosure-banner · kyc-step · fix-state-chip · threshold-band · …
+│   └── patterns/      ← command-palette · dashboard-grid
+├── mcp-server/        ← MCP server exposing this library to LLM clients
+└── ROADMAP.md         ← 8-phase migration plan
+```
 
 ## Getting started
 
 ```bash
+git clone https://github.com/Edwson/Ed_Storybook
+cd Ed_Storybook
+nvm use
 npm install
 npm run storybook        # → http://localhost:6006
 npm run build-storybook  # → ./storybook-static
 ```
 
-## Roadmap
-
-This is **v0.1**. The reference implementation covers the scaffold + 8
-foundations + 5 representative components — one per complexity tier. The
-remaining ~140 components are listed in [`ROADMAP.md`](../../ROADMAP.md) and
-will be added in batches following the same pattern.
+Production builds auto-deploy from `main` via GitHub Actions to
+[edwson.github.io/Ed_Storybook/](https://edwson.github.io/Ed_Storybook/).
 
 ---
 

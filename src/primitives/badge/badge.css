@@ -79,9 +79,9 @@
 .eds-badge--accent.eds-badge--outline { --bdg-fg: var(--accent); --bdg-bg: transparent; --bdg-border: var(--accent); }
 
 /* Success (green) */
-.eds-badge--success.eds-badge--subtle  { --bdg-fg: #52b277; --bdg-bg: rgba(82, 178, 119, 0.12); --bdg-border: rgba(82, 178, 119, 0.30); }
-.eds-badge--success.eds-badge--solid   { --bdg-fg: #060810; --bdg-bg: #52b277; --bdg-border: #52b277; }
-.eds-badge--success.eds-badge--outline { --bdg-fg: #52b277; --bdg-bg: transparent; --bdg-border: #52b277; }
+.eds-badge--success.eds-badge--subtle  { --bdg-fg: var(--color-success); --bdg-bg: var(--color-success-subtle); --bdg-border: var(--color-success-border); }
+.eds-badge--success.eds-badge--solid   { --bdg-fg: #060810; --bdg-bg: var(--color-success); --bdg-border: var(--color-success); }
+.eds-badge--success.eds-badge--outline { --bdg-fg: var(--color-success); --bdg-bg: transparent; --bdg-border: var(--color-success); }
 
 /* Warning (amber) */
 .eds-badge--warning.eds-badge--subtle  { --bdg-fg: var(--accent); --bdg-bg: var(--accent-15); --bdg-border: var(--accent-30); }
@@ -89,9 +89,9 @@
 .eds-badge--warning.eds-badge--outline { --bdg-fg: var(--accent); --bdg-bg: transparent; --bdg-border: var(--accent); }
 
 /* Danger (red) */
-.eds-badge--danger.eds-badge--subtle   { --bdg-fg: #e85d5d; --bdg-bg: rgba(232, 93, 93, 0.12); --bdg-border: rgba(232, 93, 93, 0.30); }
-.eds-badge--danger.eds-badge--solid    { --bdg-fg: #ffffff; --bdg-bg: #e85d5d; --bdg-border: #e85d5d; }
-.eds-badge--danger.eds-badge--outline  { --bdg-fg: #e85d5d; --bdg-bg: transparent; --bdg-border: #e85d5d; }
+.eds-badge--danger.eds-badge--subtle   { --bdg-fg: var(--color-danger); --bdg-bg: var(--color-danger-subtle); --bdg-border: var(--color-danger-border); }
+.eds-badge--danger.eds-badge--solid    { --bdg-fg: #ffffff; --bdg-bg: var(--color-danger); --bdg-border: var(--color-danger); }
+.eds-badge--danger.eds-badge--outline  { --bdg-fg: var(--color-danger); --bdg-bg: transparent; --bdg-border: var(--color-danger); }
 
 /* Info (teal) */
 .eds-badge--info.eds-badge--subtle  { --bdg-fg: var(--color-teal, #00d4aa); --bdg-bg: rgba(0, 212, 170, 0.12); --bdg-border: rgba(0, 212, 170, 0.30); }

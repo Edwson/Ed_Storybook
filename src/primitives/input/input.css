@@ -110,12 +110,12 @@
 /* ── Error state ─────────────────────────────────────────── */
 
 .eds-field--error .eds-field__control {
-  --field-border: rgba(232, 93, 93, 0.55);
-  box-shadow: 0 0 0 3px rgba(232, 93, 93, 0.15);
+  --field-border: var(--color-danger-border);
+  box-shadow: 0 0 0 3px var(--color-danger-subtle);
 }
 
 .eds-field--error .eds-field__helper {
-  color: #e85d5d;
+  color: var(--color-danger);
 }
 
 /* ── Disabled state ──────────────────────────────────────── */
@@ -129,24 +129,4 @@
   .eds-field__control {
     transition: none !important;
   }
-}
-
-/* ── Salt theme ──────────────────────────────────────────── */
-
-[data-theme='salt'] .eds-field__control {
-  background: var(--eds-bg-card);
-  border-color: var(--eds-border);
-}
-
-[data-theme='salt'] .eds-field__input {
-  color: var(--eds-text-1);
-}
-
-[data-theme='salt'] .eds-field__affix {
-  background: rgba(66, 36, 12, 0.06);
-  color: var(--eds-text-2);
-}
-
-[data-theme='salt'] .eds-field__label {
-  color: var(--eds-text-2);
 }

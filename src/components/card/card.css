@@ -1,0 +1,101 @@
+/* ================================================================
+   Component · Card
+   ================================================================ */
+
+.eds-card {
+  display: grid;
+  gap: var(--space-3, 12px);
+  padding: var(--space-5, 24px);
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-l, 12px);
+  font-family: 'Inter', sans-serif;
+  text-align: left;
+  text-decoration: none;
+  color: inherit;
+  transition:
+    background var(--duration-fast, 120ms) var(--ease, ease),
+    border-color var(--duration-fast, 120ms) var(--ease, ease),
+    transform var(--duration-fast, 120ms) var(--ease, ease);
+}
+
+.eds-card:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.eds-card__eyebrow {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.eds-card__title {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-weight: 400;
+  font-size: 1.4rem;
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+  color: var(--text-primary);
+}
+
+.eds-card__body {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: var(--text-secondary);
+}
+
+.eds-card__body p {
+  margin: 0 0 var(--space-3, 12px);
+}
+
+.eds-card__body p:last-child {
+  margin-bottom: 0;
+}
+
+.eds-card__meta {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-tertiary);
+  border-top: 1px solid var(--border);
+  padding-top: var(--space-3, 12px);
+}
+
+/* ── Hoverable ───────────────────────────────────────────── */
+
+.eds-card--hoverable {
+  cursor: pointer;
+}
+
+.eds-card--hoverable:hover {
+  background: var(--bg-elevated);
+  border-color: var(--border-hover);
+  transform: translateY(-2px);
+}
+
+.eds-card--hoverable:active {
+  transform: translateY(0);
+}
+
+/* ── Elevated (shadow lift) ──────────────────────────────── */
+
+.eds-card--elevated {
+  border-color: transparent;
+  box-shadow: var(--shadow-md);
+}
+
+.eds-card--elevated.eds-card--hoverable:hover {
+  box-shadow: var(--shadow-lg);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .eds-card,
+  .eds-card--hoverable:hover {
+    transition: none !important;
+    transform: none !important;
+  }
+}

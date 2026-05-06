@@ -1,0 +1,148 @@
+/* ================================================================
+   Component · Threshold Band
+   ================================================================ */
+
+.eds-tband {
+  --tband-fill-color: var(--color-success);
+  --tband-bar-bg: var(--bg-elevated);
+
+  display: grid;
+  gap: var(--space-3, 12px);
+  padding: var(--space-4, 16px);
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-m, 8px);
+  font-family: 'Inter', sans-serif;
+}
+
+.eds-tband__head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--space-3, 12px);
+  flex-wrap: wrap;
+}
+
+.eds-tband__juris {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-tertiary);
+}
+
+.eds-tband__tier {
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--tband-fill-color);
+}
+
+.eds-tband__bar {
+  position: relative;
+  width: 100%;
+  height: 8px;
+  background: var(--tband-bar-bg);
+  border-radius: 4px;
+  margin-top: var(--space-2, 8px);
+  margin-bottom: 36px; /* room for tick labels under */
+}
+
+.eds-tband__fill {
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: var(--tband-fill, 0%);
+  background: var(--tband-fill-color);
+  border-radius: 4px;
+  transition: width var(--duration-base, 200ms) var(--ease-out, ease-out);
+}
+
+/* ── Tick markers (disclose / block thresholds) ──────────── */
+
+.eds-tband__tick {
+  position: absolute;
+  top: -4px;
+  bottom: -4px;
+  left: var(--tband-tick, 0%);
+  width: 1px;
+  background: var(--text-tertiary);
+}
+
+.eds-tband__tick--disclose { background: var(--accent); }
+.eds-tband__tick--block    { background: var(--color-danger); }
+
+.eds-tband__tick-label {
+  position: absolute;
+  top: calc(100% + 6px);
+  left: 0;
+  transform: translateX(-50%);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.04em;
+  color: var(--text-tertiary);
+  white-space: nowrap;
+  text-align: center;
+  line-height: 1.3;
+}
+
+.eds-tband__tick-label em {
+  font-style: normal;
+  text-transform: uppercase;
+  font-size: 8.5px;
+  letter-spacing: 0.1em;
+  opacity: 0.7;
+}
+
+.eds-tband__tick--disclose .eds-tband__tick-label { color: var(--accent); }
+.eds-tband__tick--block    .eds-tband__tick-label { color: var(--color-danger); }
+
+/* ── Live pin (current notional) ─────────────────────────── */
+
+.eds-tband__pin {
+  position: absolute;
+  top: -10px;
+  bottom: -10px;
+  left: var(--tband-pin, 0%);
+  width: 2px;
+  background: var(--text-primary);
+  transition: left var(--duration-base, 200ms) var(--ease-out, ease-out);
+}
+
+.eds-tband__pin-label {
+  position: absolute;
+  bottom: calc(100% + 4px);
+  left: 0;
+  transform: translateX(-50%);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  color: var(--text-primary);
+  background: var(--bg-deep);
+  padding: 2px 6px;
+  border: 1px solid var(--border-hover);
+  border-radius: 3px;
+  white-space: nowrap;
+}
+
+/* ── Tier variants ───────────────────────────────────────── */
+
+.eds-tband--compliant {
+  --tband-fill-color: var(--color-success);
+}
+
+.eds-tband--disclosure {
+  --tband-fill-color: var(--accent);
+}
+
+.eds-tband--blocked {
+  --tband-fill-color: var(--color-danger);
+  border-color: var(--color-danger-border);
+  background: linear-gradient(to right, var(--color-danger-subtle) 0%, var(--bg-surface) 50%);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .eds-tband__fill,
+  .eds-tband__pin {
+    transition: none !important;
+  }
+}

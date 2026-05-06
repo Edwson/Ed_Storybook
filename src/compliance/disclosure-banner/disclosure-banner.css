@@ -136,9 +136,9 @@
    Compliant — green. Disclosure — gold. Blocked — red. */
 
 .eds-disclosure--compliant {
-  --disclosure-bar: #52b277;
-  --disclosure-icon-bg: rgba(82, 178, 119, 0.15);
-  --disclosure-icon-color: #52b277;
+  --disclosure-bar: var(--color-success);
+  --disclosure-icon-bg: var(--color-success-subtle);
+  --disclosure-icon-color: var(--color-success);
 }
 
 .eds-disclosure--disclosure {
@@ -148,30 +148,13 @@
 }
 
 .eds-disclosure--blocked {
-  --disclosure-bar: #e85d5d;
-  --disclosure-icon-bg: rgba(232, 93, 93, 0.15);
-  --disclosure-icon-color: #e85d5d;
+  --disclosure-bar: var(--color-danger);
+  --disclosure-icon-bg: var(--color-danger-subtle);
+  --disclosure-icon-color: var(--color-danger);
 }
 
 @media (prefers-reduced-motion: reduce) {
   .eds-disclosure__action {
     transition: none !important;
   }
-}
-
-/* ── Salt theme ──────────────────────────────────────────── */
-
-[data-theme='salt'] .eds-disclosure {
-  --disclosure-bg: var(--eds-bg-card);
-  --disclosure-border: var(--eds-border);
-  --disclosure-title: var(--eds-text-1);
-}
-
-[data-theme='salt'] .eds-disclosure__text {
-  color: var(--eds-text-2);
-}
-
-[data-theme='salt'] .eds-disclosure__cite {
-  background: rgba(66, 36, 12, 0.06);
-  color: var(--eds-text-2);
 }
