@@ -1,0 +1,153 @@
+/* ================================================================
+   EDS — TOC alignment + rail-removal fix  ·  v0.7.4
+
+   Loaded AFTER storybook-brand.css. Aligns the "ON THIS PAGE" title
+   and the list items to one continuous left edge, AND removes
+   Storybook's native vertical rail (white line) that runs down
+   alongside the list. Active item is signalled by colour only.
+   ================================================================ */
+
+.sbdocs .toc-wrapper {
+  padding-left: 0 !important;
+  margin-left: 0 !important;
+}
+
+.sbdocs .toc-list,
+.sbdocs .toc-wrapper ul,
+.sbdocs .toc-wrapper ol {
+  padding-left: 0 !important;
+  margin-left: 0 !important;
+  list-style: none !important;
+}
+
+.sbdocs .toc-list-item {
+  padding-left: 0 !important;
+  margin-left: 0 !important;
+}
+
+/* Kill the white vertical rail next to the TOC list. Active item
+   keeps its gold colour on the link itself — no left rule needed. */
+.sbdocs .toc-wrapper,
+.sbdocs .toc-wrapper *,
+.sbdocs .toc-list,
+.sbdocs .toc-list-item,
+.sbdocs nav[aria-labelledby],
+.sbdocs nav[aria-labelledby] *,
+.sbdocs aside[class*='toc'],
+.sbdocs aside[class*='toc'] * {
+  border-left: 0 !important;
+  border-right: 0 !important;
+  box-shadow: none !important;
+  outline: none !important;
+}
+
+/* Defensive — strip pseudo-element rules some Storybook builds use
+   as the active indicator. */
+.sbdocs .toc-list-item::before,
+.sbdocs .toc-list-item::after,
+.sbdocs .toc-list::before,
+.sbdocs .toc-list::after,
+.sbdocs nav[aria-labelledby]::before,
+.sbdocs nav[aria-labelledby]::after {
+  display: none !important;
+  content: none !important;
+}
+
+/* ================================================================
+   v0.8.1 — argstable category-row hover + salt-theme readability
+   ================================================================
+
+   Symptom 1 (dark): hovering a category row (DATA · VARIANT ·
+   DISPLAY) flipped its background to near-white via Storybook's
+   built-in hover rule, which collided with our white category
+   text — invisible row on hover.
+
+   Symptom 2 (salt): category rows used --bg-elevated which on the
+   cream surface is rgba(0,0,0,0.03) — too transparent, the cream
+   showed through and the uppercase header text rendered with a
+   "shadow / dotted" appearance because there was no clean surface
+   underneath.
+
+   Fix: lock the category-row surface in BOTH themes so hover does
+   not change colour, and strengthen salt-theme bg to a warmer
+   taupe so headers always sit on a clean opaque tone. */
+
+/* Dark theme — lock category row to a stable surface in all states.
+   Storybook 9 emits category rows as <tr title="Hide X items"> with
+   an emotion-hash class (e.g. .css-1oi7qoy) that changes between
+   builds. The title attribute is the only stable selector — match
+   it via attribute prefix [title^="Hide"] / [title^="Show"]. We
+   also keep the legacy .sbdocs-tr-category selector so this rule
+   stays effective if Storybook reverts to the documented class. */
+.sbdocs .docblock-argstable tr[title^="Hide "],
+.sbdocs .docblock-argstable tr[title^="Show "],
+.sbdocs .docblock-argstable tr[title^="Hide "]:hover,
+.sbdocs .docblock-argstable tr[title^="Show "]:hover,
+.sbdocs .docblock-argstable tr.sbdocs-tr-category,
+.sbdocs .docblock-argstable tr.sbdocs-tr-category:hover {
+  background: rgba(255, 255, 255, 0.04) !important;
+}
+
+.sbdocs .docblock-argstable tr[title^="Hide "] td,
+.sbdocs .docblock-argstable tr[title^="Hide "] th,
+.sbdocs .docblock-argstable tr[title^="Hide "]:hover td,
+.sbdocs .docblock-argstable tr[title^="Hide "]:hover th,
+.sbdocs .docblock-argstable tr[title^="Show "] td,
+.sbdocs .docblock-argstable tr[title^="Show "] th,
+.sbdocs .docblock-argstable tr[title^="Show "]:hover td,
+.sbdocs .docblock-argstable tr[title^="Show "]:hover th,
+.sbdocs .docblock-argstable tr.sbdocs-tr-category td,
+.sbdocs .docblock-argstable tr.sbdocs-tr-category th,
+.sbdocs .docblock-argstable tr.sbdocs-tr-category:hover td,
+.sbdocs .docblock-argstable tr.sbdocs-tr-category:hover th {
+  background: rgba(255, 255, 255, 0.04) !important;
+  color: var(--text-primary) !important;
+}
+
+/* Category-toggle button inside the row — kill the inherited
+   button styling that makes "Hide Display items" white-on-white
+   on hover. Lock to the same primary text colour. */
+.sbdocs .docblock-argstable tr[title^="Hide "] button,
+.sbdocs .docblock-argstable tr[title^="Show "] button,
+.sbdocs .docblock-argstable tr[title^="Hide "] button:hover,
+.sbdocs .docblock-argstable tr[title^="Show "] button:hover {
+  background: transparent !important;
+  color: var(--text-primary) !important;
+  font-family: 'JetBrains Mono', monospace !important;
+  font-size: 11px !important;
+  letter-spacing: 0.08em !important;
+  text-transform: uppercase !important;
+}
+
+/* Salt theme — give category rows a solid warm-taupe surface so
+   the cream page does not show through and headers render clean. */
+[data-theme='salt'] .sbdocs .docblock-argstable tr[title^="Hide "],
+[data-theme='salt'] .sbdocs .docblock-argstable tr[title^="Show "],
+[data-theme='salt'] .sbdocs .docblock-argstable tr[title^="Hide "]:hover,
+[data-theme='salt'] .sbdocs .docblock-argstable tr[title^="Show "]:hover,
+[data-theme='salt'] .sbdocs .docblock-argstable tr.sbdocs-tr-category,
+[data-theme='salt'] .sbdocs .docblock-argstable tr.sbdocs-tr-category:hover {
+  background: rgba(66, 36, 7, 0.06) !important;
+}
+
+[data-theme='salt'] .sbdocs .docblock-argstable tr[title^="Hide "] td,
+[data-theme='salt'] .sbdocs .docblock-argstable tr[title^="Hide "] th,
+[data-theme='salt'] .sbdocs .docblock-argstable tr[title^="Hide "]:hover td,
+[data-theme='salt'] .sbdocs .docblock-argstable tr[title^="Hide "]:hover th,
+[data-theme='salt'] .sbdocs .docblock-argstable tr[title^="Show "] td,
+[data-theme='salt'] .sbdocs .docblock-argstable tr[title^="Show "] th,
+[data-theme='salt'] .sbdocs .docblock-argstable tr[title^="Show "]:hover td,
+[data-theme='salt'] .sbdocs .docblock-argstable tr[title^="Show "]:hover th,
+[data-theme='salt'] .sbdocs .docblock-argstable tr.sbdocs-tr-category td,
+[data-theme='salt'] .sbdocs .docblock-argstable tr.sbdocs-tr-category th {
+  background: rgba(66, 36, 7, 0.06) !important;
+  color: var(--text-primary) !important;
+}
+
+[data-theme='salt'] .sbdocs .docblock-argstable tr[title^="Hide "] button,
+[data-theme='salt'] .sbdocs .docblock-argstable tr[title^="Show "] button,
+[data-theme='salt'] .sbdocs .docblock-argstable tr[title^="Hide "] button:hover,
+[data-theme='salt'] .sbdocs .docblock-argstable tr[title^="Show "] button:hover {
+  background: transparent !important;
+  color: var(--text-primary) !important;
+}
