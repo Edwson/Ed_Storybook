@@ -104,19 +104,21 @@
   color: var(--text-primary) !important;
 }
 
-/* Category-toggle button inside the row — only override colour +
-   background. Storybook 9 hides the literal "Hide X items" text via
-   font-size:0 / text-indent and renders the category label via a
-   ::before pseudo-element; do NOT touch font-family / font-size /
-   text-transform or the clipped text re-appears and overlaps the
-   pseudo-element label. v0.8.1-rev: stripped font overrides after
-   the pseudo-element label collided with the button text. */
+/* Category-toggle button inside the row — Storybook 9 styles this
+   button as an INVISIBLE absolute-positioned click overlay covering
+   the whole cell (position:absolute; inset:0; color:transparent),
+   while the visible category label is rendered by a sibling <span>.
+   Touching `color` un-hides the button's literal "Hide X items"
+   text and overlaps the visible span label. The ONLY safe property
+   to override here is `background` (no-op since the row already
+   has its own background). v0.8.1-rev2: drop the color override
+   entirely; the row-level color rule already styles the visible
+   span correctly. */
 .sbdocs .docblock-argstable tr[title^="Hide "] button,
 .sbdocs .docblock-argstable tr[title^="Show "] button,
 .sbdocs .docblock-argstable tr[title^="Hide "] button:hover,
 .sbdocs .docblock-argstable tr[title^="Show "] button:hover {
   background: transparent !important;
-  color: var(--text-primary) !important;
 }
 
 /* Salt theme — give category rows a solid warm-taupe surface so
@@ -149,5 +151,4 @@
 [data-theme='salt'] .sbdocs .docblock-argstable tr[title^="Hide "] button:hover,
 [data-theme='salt'] .sbdocs .docblock-argstable tr[title^="Show "] button:hover {
   background: transparent !important;
-  color: var(--text-primary) !important;
 }
