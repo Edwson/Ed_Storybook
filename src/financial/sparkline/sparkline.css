@@ -1,0 +1,91 @@
+/* ================================================================
+   Financial · Sparkline
+   Inline micro-chart for watchlists, position rows, KPI tiles.
+   No axes, no labels — pure shape. Direction is colour + arrow.
+   ================================================================ */
+
+.eds-spark {
+  --spk-fg: var(--text-secondary);
+  --spk-pos: var(--positive, #4ade80);
+  --spk-neg: var(--negative, #f87171);
+  --spk-flat: var(--text-muted);
+  --spk-w: 80px;
+  --spk-h: 22px;
+
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  width: max-content;
+  font-variant-numeric: tabular-nums;
+}
+
+.eds-spark__chart {
+  display: block;
+  width: var(--spk-w);
+  height: var(--spk-h);
+  flex: none;
+}
+
+.eds-spark__line {
+  fill: none;
+  stroke-width: 1.4;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.eds-spark__fill {
+  opacity: 0.18;
+}
+
+.eds-spark__dot {
+  fill: currentColor;
+  stroke: var(--bg-surface);
+  stroke-width: 1;
+}
+
+.eds-spark__delta {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.78rem;
+  font-weight: 500;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+.eds-spark__arrow {
+  font-size: 0.72em;
+  display: inline-block;
+  transform: translateY(-0.5px);
+}
+
+/* Direction colour — paired with arrow + sign + label so colour is
+   never the only signal. */
+
+.eds-spark--up { color: var(--spk-pos); }
+.eds-spark--down { color: var(--spk-neg); }
+.eds-spark--flat { color: var(--spk-flat); }
+
+.eds-spark--up .eds-spark__line   { stroke: var(--spk-pos); }
+.eds-spark--down .eds-spark__line { stroke: var(--spk-neg); }
+.eds-spark--flat .eds-spark__line { stroke: var(--spk-flat); }
+
+.eds-spark--up .eds-spark__fill   { fill: var(--spk-pos); }
+.eds-spark--down .eds-spark__fill { fill: var(--spk-neg); }
+.eds-spark--flat .eds-spark__fill { fill: var(--spk-flat); }
+
+/* ── Sizes ────────────────────────────────────────────────── */
+
+.eds-spark--sm { --spk-w: 60px; --spk-h: 18px; }
+.eds-spark--sm .eds-spark__delta { font-size: 0.72rem; }
+
+.eds-spark--md { --spk-w: 80px; --spk-h: 22px; }
+
+.eds-spark--lg { --spk-w: 120px; --spk-h: 32px; }
+.eds-spark--lg .eds-spark__delta { font-size: 0.85rem; }
+
+/* Compact mode — chart only, no label. */
+
+.eds-spark--compact { gap: 0; }
+.eds-spark--compact .eds-spark__delta { display: none; }
