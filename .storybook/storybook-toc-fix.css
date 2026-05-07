@@ -104,19 +104,19 @@
   color: var(--text-primary) !important;
 }
 
-/* Category-toggle button inside the row — kill the inherited
-   button styling that makes "Hide Display items" white-on-white
-   on hover. Lock to the same primary text colour. */
+/* Category-toggle button inside the row — only override colour +
+   background. Storybook 9 hides the literal "Hide X items" text via
+   font-size:0 / text-indent and renders the category label via a
+   ::before pseudo-element; do NOT touch font-family / font-size /
+   text-transform or the clipped text re-appears and overlaps the
+   pseudo-element label. v0.8.1-rev: stripped font overrides after
+   the pseudo-element label collided with the button text. */
 .sbdocs .docblock-argstable tr[title^="Hide "] button,
 .sbdocs .docblock-argstable tr[title^="Show "] button,
 .sbdocs .docblock-argstable tr[title^="Hide "] button:hover,
 .sbdocs .docblock-argstable tr[title^="Show "] button:hover {
   background: transparent !important;
   color: var(--text-primary) !important;
-  font-family: 'JetBrains Mono', monospace !important;
-  font-size: 11px !important;
-  letter-spacing: 0.08em !important;
-  text-transform: uppercase !important;
 }
 
 /* Salt theme — give category rows a solid warm-taupe surface so
