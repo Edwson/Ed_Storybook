@@ -1,0 +1,166 @@
+/* ================================================================
+   Primitive · Chip
+   Interactive selectable element with optional dismiss button.
+   Differs from Badge: chip is a control (clickable, removable),
+   badge is a display indicator (status only, never clickable).
+   ================================================================ */
+
+.eds-chip {
+  --chp-fg: var(--text-primary);
+  --chp-bg: var(--bg-surface);
+  --chp-border: var(--border);
+  --chp-fs: 0.85rem;
+  --chp-px: var(--space-3, 12px);
+  --chp-py: 6px;
+  --chp-radius: 999px;
+
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: var(--chp-py) var(--chp-px);
+  font-family: 'Inter', sans-serif;
+  font-size: var(--chp-fs);
+  font-weight: 500;
+  line-height: 1.3;
+  color: var(--chp-fg);
+  background: var(--chp-bg);
+  border: 1px solid var(--chp-border);
+  border-radius: var(--chp-radius);
+  cursor: pointer;
+  transition: background var(--duration-fast, 120ms) var(--ease, ease),
+              border-color var(--duration-fast, 120ms) var(--ease, ease),
+              color var(--duration-fast, 120ms) var(--ease, ease);
+  user-select: none;
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+
+.eds-chip:hover {
+  border-color: var(--border-hover);
+  background: var(--bg-elevated);
+}
+
+.eds-chip:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+/* ── Selected state ───────────────────────────────────────── */
+
+.eds-chip--selected {
+  --chp-fg: var(--accent);
+  --chp-bg: var(--accent-subtle);
+  --chp-border: var(--accent-30);
+}
+
+.eds-chip--selected:hover {
+  --chp-bg: var(--accent-12, rgba(201, 169, 89, 0.16));
+  --chp-border: var(--accent);
+}
+
+/* ── Disabled state ───────────────────────────────────────── */
+
+.eds-chip[aria-disabled='true'] {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.eds-chip[aria-disabled='true']:hover {
+  border-color: var(--chp-border);
+  background: var(--chp-bg);
+}
+
+/* ── Sizes ────────────────────────────────────────────────── */
+
+.eds-chip--sm {
+  --chp-fs: 0.75rem;
+  --chp-px: 10px;
+  --chp-py: 4px;
+}
+
+.eds-chip--md {
+  --chp-fs: 0.85rem;
+  --chp-px: var(--space-3, 12px);
+  --chp-py: 6px;
+}
+
+.eds-chip--lg {
+  --chp-fs: 0.95rem;
+  --chp-px: var(--space-4, 16px);
+  --chp-py: 8px;
+}
+
+/* ── Internal pieces ──────────────────────────────────────── */
+
+.eds-chip__icon {
+  display: inline-flex;
+  width: 1em;
+  height: 1em;
+  flex: none;
+  font-family: 'JetBrains Mono', monospace;
+  align-items: center;
+  justify-content: center;
+}
+
+.eds-chip__count {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.85em;
+  font-weight: 600;
+  padding: 0 4px;
+  margin-left: 2px;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.08);
+  min-width: 1.6em;
+  text-align: center;
+}
+
+.eds-chip--selected .eds-chip__count {
+  background: var(--accent-subtle);
+  color: var(--accent);
+}
+
+.eds-chip__close {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 14px;
+  height: 14px;
+  margin-right: -4px;
+  padding: 0;
+  border: none;
+  background: transparent;
+  color: currentColor;
+  border-radius: 50%;
+  cursor: pointer;
+  opacity: 0.6;
+  transition: opacity var(--duration-fast, 120ms) var(--ease, ease),
+              background var(--duration-fast, 120ms) var(--ease, ease);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.85em;
+  line-height: 1;
+}
+
+.eds-chip__close:hover {
+  opacity: 1;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.eds-chip__close:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 1px;
+}
+
+/* ── Salt theme ───────────────────────────────────────────── */
+
+[data-theme='salt'] .eds-chip__count {
+  background: rgba(0, 0, 0, 0.06);
+}
+
+[data-theme='salt'] .eds-chip__close:hover {
+  background: rgba(0, 0, 0, 0.08);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .eds-chip,
+  .eds-chip__close { transition: none !important; }
+}
