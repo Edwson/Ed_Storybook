@@ -1,0 +1,178 @@
+/* ================================================================
+   Component · Toast
+   Transient notification. Surface for confirmations, alerts,
+   FIX session events. Never blocks workflow, always dismissable.
+   ================================================================ */
+
+.eds-toast {
+  --tst-fg: var(--text-primary);
+  --tst-bg: var(--bg-surface);
+  --tst-border: var(--border);
+  --tst-accent: var(--accent);
+
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 12px;
+  padding: 12px 14px;
+  min-width: 280px;
+  max-width: 460px;
+  font-family: 'Inter', sans-serif;
+  color: var(--tst-fg);
+  background: var(--tst-bg);
+  border: 1px solid var(--tst-border);
+  border-radius: 6px;
+  box-shadow: var(--shadow-md, 0 8px 24px rgba(0, 0, 0, 0.4));
+  position: relative;
+}
+
+.eds-toast::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 3px;
+  background: var(--tst-accent);
+  border-radius: 6px 0 0 6px;
+}
+
+.eds-toast__icon {
+  display: inline-flex;
+  width: 20px;
+  height: 20px;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+  color: var(--tst-accent);
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: 700;
+  font-size: 13px;
+}
+
+.eds-toast__icon svg {
+  width: 100%;
+  height: 100%;
+  stroke: currentColor;
+  fill: none;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.eds-toast__body {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.eds-toast__title {
+  font-size: 0.88rem;
+  font-weight: 600;
+  line-height: 1.35;
+  color: var(--text-primary);
+}
+
+.eds-toast__message {
+  font-size: 0.8rem;
+  line-height: 1.45;
+  color: var(--text-secondary);
+}
+
+.eds-toast__actions {
+  display: flex;
+  gap: 8px;
+  margin-top: 6px;
+  align-items: center;
+}
+
+.eds-toast__action {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.78rem;
+  font-weight: 500;
+  color: var(--accent);
+  background: transparent;
+  border: none;
+  padding: 2px 4px;
+  cursor: pointer;
+  border-radius: 3px;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-color: var(--accent-30);
+}
+
+.eds-toast__action:hover {
+  text-decoration-color: var(--accent);
+}
+
+.eds-toast__action:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.eds-toast__close {
+  display: inline-flex;
+  align-items: flex-start;
+  justify-content: center;
+  width: 18px;
+  height: 18px;
+  margin-top: 1px;
+  border: none;
+  background: transparent;
+  color: var(--text-muted);
+  cursor: pointer;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 1rem;
+  line-height: 1;
+  border-radius: 3px;
+  flex: none;
+  transition: color var(--duration-fast, 120ms) var(--ease, ease);
+}
+
+.eds-toast__close:hover { color: var(--text-primary); }
+.eds-toast__close:focus-visible { outline: 2px solid var(--accent); outline-offset: 1px; }
+
+/* ── Variants ─────────────────────────────────────────────── */
+
+.eds-toast--info { --tst-accent: var(--accent); }
+
+.eds-toast--success {
+  --tst-accent: var(--positive, #4ade80);
+}
+.eds-toast--success .eds-toast__icon { color: var(--positive, #4ade80); }
+
+.eds-toast--warning {
+  --tst-accent: var(--caution, #fbbf24);
+}
+.eds-toast--warning .eds-toast__icon { color: var(--caution, #fbbf24); }
+
+.eds-toast--danger {
+  --tst-accent: var(--negative, #f87171);
+}
+.eds-toast--danger .eds-toast__icon { color: var(--negative, #f87171); }
+
+/* ── Stack container (positioning + auto-stack) ──────────── */
+
+.eds-toast-stack {
+  position: fixed;
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  pointer-events: none;
+}
+
+.eds-toast-stack > * { pointer-events: auto; }
+
+.eds-toast-stack--top-right { top: 16px; right: 16px; }
+.eds-toast-stack--top-left { top: 16px; left: 16px; }
+.eds-toast-stack--bottom-right { bottom: 16px; right: 16px; }
+.eds-toast-stack--bottom-left { bottom: 16px; left: 16px; }
+
+/* ── Reduced motion ───────────────────────────────────────── */
+
+@media (prefers-reduced-motion: reduce) {
+  .eds-toast,
+  .eds-toast__close,
+  .eds-toast__action { transition: none !important; }
+}
