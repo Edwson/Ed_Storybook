@@ -1,0 +1,137 @@
+/* ================================================================
+   Component · Pagination
+   Compact / numbered / minimal variants × 3 sizes.
+   ================================================================ */
+
+.eds-pag {
+  --pag-h: 32px;
+  --pag-fs: 0.85rem;
+  --pag-gap: 4px;
+  --pag-pad-x: 10px;
+
+  display: block;
+  font-family: 'Inter', sans-serif;
+  color: var(--text-primary);
+}
+
+.eds-pag--sm { --pag-h: 26px; --pag-fs: 0.78rem; --pag-pad-x: 8px; }
+.eds-pag--md { --pag-h: 32px; --pag-fs: 0.85rem; --pag-pad-x: 10px; }
+.eds-pag--lg { --pag-h: 40px; --pag-fs: 0.95rem; --pag-pad-x: 14px; }
+
+.eds-pag__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.eds-pag__range {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: var(--pag-fs);
+  font-variant-numeric: tabular-nums;
+  color: var(--text-secondary);
+}
+
+.eds-pag__spacer { display: inline-block; }
+
+.eds-pag__strip {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--pag-gap);
+}
+
+.eds-pag__page,
+.eds-pag__nav {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: var(--pag-h);
+  min-width: var(--pag-h);
+  padding: 0 var(--pag-pad-x);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: var(--pag-fs);
+  font-weight: 500;
+  font-variant-numeric: tabular-nums;
+  color: var(--text-primary);
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-s, 4px);
+  cursor: pointer;
+  user-select: none;
+  transition:
+    background var(--duration-fast, 120ms) var(--ease, ease),
+    border-color var(--duration-fast, 120ms) var(--ease, ease),
+    color var(--duration-fast, 120ms) var(--ease, ease);
+}
+
+.eds-pag__page:hover,
+.eds-pag__nav:not([disabled]):hover {
+  background: var(--bg-elevated);
+  border-color: var(--border-hover);
+}
+
+.eds-pag__page:focus-visible,
+.eds-pag__nav:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.eds-pag__page--active {
+  background: var(--accent-subtle);
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.eds-pag__page--active:hover {
+  background: var(--accent-12, rgba(201, 169, 89, 0.16));
+}
+
+.eds-pag__nav[disabled],
+.eds-pag__nav[aria-disabled="true"] {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.eds-pag__ellipsis {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: var(--pag-h);
+  min-width: var(--pag-h);
+  font-family: 'JetBrains Mono', monospace;
+  color: var(--text-tertiary);
+  font-size: var(--pag-fs);
+}
+
+/* Numbered variant — heavier weight on numbered tiles */
+.eds-pag--numbered .eds-pag__page {
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
+/* Minimal variant — single text with prev/next arrows */
+.eds-pag--minimal .eds-pag__strip {
+  gap: 8px;
+}
+.eds-pag__minimal-text {
+  font-family: 'Inter', sans-serif;
+  font-size: var(--pag-fs);
+  color: var(--text-secondary);
+  padding: 0 8px;
+  font-variant-numeric: tabular-nums;
+}
+.eds-pag__minimal-text strong {
+  color: var(--text-primary);
+  font-weight: 600;
+}
+
+@media (max-width: 480px) {
+  .eds-pag__inner { gap: 8px; }
+  .eds-pag__range { width: 100%; text-align: center; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .eds-pag__page,
+  .eds-pag__nav { transition: none !important; }
+}
