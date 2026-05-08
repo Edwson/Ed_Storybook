@@ -1,0 +1,148 @@
+/* ================================================================
+   Component · Progress
+   Linear bar with variants, sizes, striped overlay, indeterminate mode.
+   ================================================================ */
+
+.eds-progress {
+  --p-bar-h: 8px;
+  --p-bg: var(--bg-elevated);
+  --p-fg: var(--accent);
+  --p-fg-text: var(--accent-fg, #0a0a14);
+
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-family: 'Inter', sans-serif;
+  color: var(--text-primary);
+}
+
+.eds-progress--sm { --p-bar-h: 5px; }
+.eds-progress--md { --p-bar-h: 8px; }
+.eds-progress--lg { --p-bar-h: 12px; }
+
+.eds-progress--success { --p-fg: var(--good, #16825d); }
+.eds-progress--warning { --p-fg: var(--warn, #f0883e); }
+.eds-progress--danger  { --p-fg: var(--alert, #c5303f); }
+.eds-progress--info    { --p-fg: var(--info, #4080e8); }
+
+.eds-progress__head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  font-size: 0.78rem;
+}
+.eds-progress__head--top { flex-direction: column; align-items: flex-start; }
+.eds-progress__head--outside-left { flex-direction: row-reverse; justify-content: flex-end; }
+
+.eds-progress__label {
+  color: var(--text-primary);
+  font-weight: 500;
+}
+
+.eds-progress__value {
+  font-family: 'JetBrains Mono', monospace;
+  font-variant-numeric: tabular-nums;
+  color: var(--text-secondary);
+  font-size: 0.85em;
+}
+
+.eds-progress__track {
+  position: relative;
+  height: var(--p-bar-h);
+  background: var(--p-bg);
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.eds-progress__fill {
+  position: relative;
+  height: 100%;
+  width: var(--progress-pp, 0%);
+  background: var(--p-fg);
+  border-radius: 999px;
+  transition: width var(--duration-base, 220ms) var(--ease, ease),
+              background var(--duration-base, 220ms) var(--ease, ease);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.eds-progress__value-inside {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.7rem;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  color: var(--p-fg-text);
+  white-space: nowrap;
+  padding: 0 8px;
+}
+
+/* Striped overlay (static or animated) */
+.eds-progress--striped .eds-progress__fill {
+  background-image: linear-gradient(
+    45deg,
+    rgba(255, 255, 255, 0.18) 25%,
+    transparent 25%,
+    transparent 50%,
+    rgba(255, 255, 255, 0.18) 50%,
+    rgba(255, 255, 255, 0.18) 75%,
+    transparent 75%,
+    transparent
+  );
+  background-size: 16px 16px;
+  background-color: var(--p-fg);
+}
+
+.eds-progress--animated.eds-progress--striped .eds-progress__fill {
+  animation: eds-progress-stripes 1.4s linear infinite;
+}
+
+@keyframes eds-progress-stripes {
+  0%   { background-position: 0 0; }
+  100% { background-position: 16px 0; }
+}
+
+/* Indeterminate mode: width is capped at 30% then sweeps */
+.eds-progress--indeterminate .eds-progress__fill {
+  width: 30%;
+  animation: eds-progress-sweep 1.6s ease-in-out infinite;
+}
+
+@keyframes eds-progress-sweep {
+  0%   { transform: translateX(-100%); }
+  100% { transform: translateX(333%); }
+}
+
+.eds-progress__helper {
+  font-size: 0.72rem;
+  color: var(--text-tertiary);
+  line-height: 1.4;
+}
+
+/* Salt theme adjustment — striped overlay on cream surface needs darker stripe */
+[data-theme='salt'] .eds-progress--striped .eds-progress__fill {
+  background-image: linear-gradient(
+    45deg,
+    rgba(0, 0, 0, 0.12) 25%,
+    transparent 25%,
+    transparent 50%,
+    rgba(0, 0, 0, 0.12) 50%,
+    rgba(0, 0, 0, 0.12) 75%,
+    transparent 75%,
+    transparent
+  );
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .eds-progress__fill,
+  .eds-progress--animated .eds-progress__fill,
+  .eds-progress--indeterminate .eds-progress__fill {
+    animation: none !important;
+    transition: none !important;
+  }
+  .eds-progress--indeterminate .eds-progress__fill {
+    width: 100% !important;
+    transform: none !important;
+  }
+}
